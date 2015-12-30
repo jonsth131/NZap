@@ -21,19 +21,18 @@ namespace Tests
         {
             var actual = apiResult.ResultList.Count;
             Assert.AreEqual(expected, actual);
-            StringAssert.Contains(expectedKey, apiResult.Key);
+            var apiResultElement = apiResult.ResultList.ElementAt(actual - 1);
+            StringAssert.Contains(expectedKey, apiResultElement.Key);
         }
 
         internal static void ResultAssertsWithValue(IApiResult apiResult, int expected, string expectedKey, string expectedValue)
         {
             var actual = apiResult.ResultList.Count;
             Assert.AreEqual(expected, actual);
-            if (actual > 0) { 
-                var apiResultElement = apiResult.ResultList.ElementAt(actual - 1);
-                StringAssert.Contains(expectedKey, apiResultElement.Key);
-                StringAssert.Contains(expectedValue, apiResultElement.Value);
-            }
-            StringAssert.Contains(expectedKey, apiResult.Key);
+            var apiResultList = apiResult.ResultList.ElementAt(actual - 1);
+            var apiResultElement = apiResultList.ApiResultElements.ElementAt(actual - 1);
+            StringAssert.Contains(expectedKey, apiResultElement.Key);
+            StringAssert.Contains(expectedValue, apiResultElement.Value);
         }
 
         internal static void ActionResultAsserts(IApiResult apiResult, int expected)

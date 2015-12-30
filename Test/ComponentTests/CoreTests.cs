@@ -41,7 +41,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetHomeDirectoryShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "homeDirectory";
             var apiResult = ZapClient.Core.GetHomeDirectory();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -78,7 +78,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetNumberOfAlertsShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "numberOfAlerts";
             var apiResult = ZapClient.Core.GetNumberOfAlerts();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -87,7 +87,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetNumberOfAlertsWithParametersShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "numberOfAlerts";
             var parameters = new Dictionary<string, string> { { "baseurl", "localhost" } };
             var apiResult = ZapClient.Core.GetNumberOfAlerts(parameters);
@@ -97,7 +97,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetNumberOfMessagesShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "numberOfMessages";
             var apiResult = ZapClient.Core.GetNumberOfMessages();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -106,7 +106,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetNumberOfMessagesWithParametersShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "numberOfMessages";
             var parameters = new Dictionary<string, string> { { "baseurl", "localhost" } };
             var apiResult = ZapClient.Core.GetNumberOfMessages(parameters);
@@ -116,7 +116,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionDefaultUserAgentShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "DefaultUserAgent";
             var apiResult = ZapClient.Core.GetOptionDefaultUserAgent();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -133,7 +133,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionHttpStateEnabledShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "HttpStateEnabled";
             var apiResult = ZapClient.Core.GetOptionHttpStateEnabled();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -142,7 +142,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionProxyChainNameShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "ProxyChainName";
             var apiResult = ZapClient.Core.GetOptionProxyChainName();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -151,7 +151,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionProxyChainPasswordShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "ProxyChainPassword";
             var apiResult = ZapClient.Core.GetOptionProxyChainPassword();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -160,7 +160,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionProxyChainPortShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "ProxyChainPort";
             var apiResult = ZapClient.Core.GetOptionProxyChainPort();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -169,7 +169,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionProxyChainPromptShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "ProxyChainPrompt";
             var apiResult = ZapClient.Core.GetOptionProxyChainPrompt();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -178,7 +178,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionProxyChainRealmShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "ProxyChainRealm";
             var apiResult = ZapClient.Core.GetOptionProxyChainRealm();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -187,7 +187,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionProxyChainSkipNameShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "ProxyChainSkipName";
             var apiResult = ZapClient.Core.GetOptionProxyChainSkipName();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -196,7 +196,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionProxyChainUserNameShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "ProxyChainUserName";
             var apiResult = ZapClient.Core.GetOptionProxyChainUserName();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -223,7 +223,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionSingleCookieRequestHeaderShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "SingleCookieRequestHeader";
             var apiResult = ZapClient.Core.GetOptionSingleCookieRequestHeader();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -232,7 +232,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionTimeoutInSecsShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "TimeoutInSecs";
             var apiResult = ZapClient.Core.GetOptionTimeoutInSecs();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -241,7 +241,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionUseProxyChainShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "UseProxyChain";
             var apiResult = ZapClient.Core.GetOptionUseProxyChain();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -250,7 +250,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionUseProxyChainAuthShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "UseProxyChain";
             var apiResult = ZapClient.Core.GetOptionUseProxyChainAuth();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -277,7 +277,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetStatsWithParametersShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             var parameters = new Dictionary<string, string> { { "keyPrefix", "1" } };
             var apiResult = ZapClient.Core.GetNumberOfMessages(parameters);
             var actual = apiResult.ResultList.Count();
@@ -296,7 +296,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetVersionShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "version";
             var apiResult = ZapClient.Core.GetVersion();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -315,7 +315,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestClearExcludedFromProxyShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             var apiResult = ZapClient.Core.ClearExcludedFromProxy(Apikey);
             ActionResultAsserts(apiResult, expected);
         }

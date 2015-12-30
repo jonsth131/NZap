@@ -9,7 +9,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetRecordsToScanShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             const string expectedKey = "recordsToScan";
             var apiResult = ZapClient.Pscan.GetRecordsToScan();
             ResultAsserts(apiResult, expected, expectedKey);
@@ -29,7 +29,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestDisableAllScannersShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             var apiResult = ZapClient.Pscan.DisableAllScanners(Apikey);
             ActionResultAsserts(apiResult, expected);
         }
@@ -37,7 +37,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestDisableScannersShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             var apiResult = ZapClient.Pscan.DisableScanners(Apikey, "1");
             ActionResultAsserts(apiResult, expected);
         }
@@ -45,7 +45,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestEnableAllScannersShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             var apiResult = ZapClient.Pscan.EnableAllScanners(Apikey);
             ActionResultAsserts(apiResult, expected);
         }
@@ -53,7 +53,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestEnableScannersShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             var apiResult = ZapClient.Pscan.EnableScanners(Apikey, "1");
             ActionResultAsserts(apiResult, expected);
         }
@@ -61,7 +61,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestSetEnabledFalseShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             var apiResult = ZapClient.Pscan.SetEnabled(Apikey, false);
             ActionResultAsserts(apiResult, expected);
         }
@@ -69,7 +69,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestSetEnabledTrueShouldSucceed()
         {
-            const int expected = 0;
+            const int expected = 1;
             var apiResult = ZapClient.Pscan.SetEnabled(Apikey, true);
             ActionResultAsserts(apiResult, expected);
         }
