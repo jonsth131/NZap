@@ -38,7 +38,6 @@ namespace NZap
     {
         private readonly string _host;
         private readonly int _port;
-        private readonly bool _https;
 
         public IAcsrfComponent Acsrf { get; }
         public IAjaxSpiderComponent AjaxSpider { get; }
@@ -61,15 +60,10 @@ namespace NZap
         public ISpiderComponent Spider { get; }
         public IUsersComponent Users { get; }
 
-        public ZapClient(string host, int port) : this(host, port, false)
-        {
-        }
-
-        public ZapClient(string host, int port, bool https)
+        public ZapClient(string host, int port)
         {
             _host = host;
             _port = port;
-            _https = https;
             Acsrf = new AcsrfComponent(this);
             AjaxSpider = new AjaxSpiderComponent(this);
             Ascan = new AscanComponent(this);

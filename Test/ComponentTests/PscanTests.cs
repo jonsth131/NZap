@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NZap.Enums;
 
 namespace Tests.ComponentTests
 {
@@ -71,6 +72,46 @@ namespace Tests.ComponentTests
         {
             const int expected = 1;
             var apiResult = ZapClient.Pscan.SetEnabled(Apikey, true);
+            ActionResultAsserts(apiResult, expected);
+        }
+
+        [Test]
+        public void TestSetScannerAlertThresholdToDefaultShouldSucceed()
+        {
+            const int expected = 1;
+            var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.DEFAULT);
+            ActionResultAsserts(apiResult, expected);
+        }
+
+        [Test]
+        public void TestSetScannerAlertThresholdToHighShouldSucceed()
+        {
+            const int expected = 1;
+            var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.HIGH);
+            ActionResultAsserts(apiResult, expected);
+        }
+
+        [Test]
+        public void TestSetScannerAlertThresholdToLowShouldSucceed()
+        {
+            const int expected = 1;
+            var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.LOW);
+            ActionResultAsserts(apiResult, expected);
+        }
+
+        [Test]
+        public void TestSetScannerAlertThresholdToMediumShouldSucceed()
+        {
+            const int expected = 1;
+            var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.MEDIUM);
+            ActionResultAsserts(apiResult, expected);
+        }
+
+        [Test]
+        public void TestSetScannerAlertThresholdToOffShouldSucceed()
+        {
+            const int expected = 1;
+            var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.OFF);
             ActionResultAsserts(apiResult, expected);
         }
         #endregion

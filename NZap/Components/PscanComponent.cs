@@ -1,4 +1,5 @@
 ﻿using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -15,7 +16,7 @@ namespace NZap.Components
         IApiResult EnableAllScanners(string apikey);
         IApiResult EnableScanners(string apikey, string ids);
         IApiResult SetEnabled(string apikey, bool enabled);
-        IApiResult SetScannerAlertThreshold(string apikey, string id, string alertThreshold);
+        IApiResult SetScannerAlertThreshold(string apikey, string id, AlertThreshold alertThreshold);
     }
 
     public class PscanComponent : IPscanComponent
@@ -115,11 +116,11 @@ namespace NZap.Components
         /// <param name="id">ID of the passive scanner</param>
         /// <param name="alertThreshold">Accepted values for alert threshold: OFF, DEFAULT, LOW, MEDIUM and HIGH</param>
         /// <returns>Result of the action</returns>
-        public IApiResult SetScannerAlertThreshold(string apikey, string id, string alertThreshold)
+        public IApiResult SetScannerAlertThreshold(string apikey, string id, AlertThreshold alertThreshold)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("id", id);
-            parameters.Add("alertThreshold", alertThreshold);
+            parameters.Add("alertThreshold", alertThreshold.ToString());
             return _zapClient.CallApi(Component, "action", "setScannerAlertThreshold", parameters);
         }
     }
