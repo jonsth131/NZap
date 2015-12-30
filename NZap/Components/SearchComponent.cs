@@ -40,56 +40,56 @@ namespace NZap.Components
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", "messagesByHeaderRegex");
+            return _zapClient.CallApi(Component, "view", "messagesByHeaderRegex", parameters);
         }
 
         public IApiResult GetMessagesByRequestRegex(string regex, IDictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", "messagesByRequestRegex");
+            return _zapClient.CallApi(Component, "view", "messagesByRequestRegex", parameters);
         }
 
         public IApiResult GetMessagesByResponseRegex(string regex, IDictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", "messagesByResponseRegex");
+            return _zapClient.CallApi(Component, "view", "messagesByResponseRegex", parameters);
         }
 
         public IApiResult GetMessagesByUrlRegex(string regex, IDictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", "messagesByUrlRegex");
+            return _zapClient.CallApi(Component, "view", "messagesByUrlRegex", parameters);
         }
 
         public IApiResult GetUrlsByHeaderRegex(string regex, IDictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", "urlsByHeaderRegex");
+            return _zapClient.CallApi(Component, "view", "urlsByHeaderRegex", parameters);
         }
 
         public IApiResult GetUrlsByRequestRegex(string regex, IDictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", "urlsByRequestRegex");
+            return _zapClient.CallApi(Component, "view", "urlsByRequestRegex", parameters);
         }
 
         public IApiResult GetUrlsByResponseRegex(string regex, IDictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", "urlsByResponseRegex");
+            return _zapClient.CallApi(Component, "view", "urlsByResponseRegex", parameters);
         }
 
         public IApiResult GetUrlsByUrlRegex(string regex, IDictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", "urlsByUrlRegex");
+            return _zapClient.CallApi(Component, "view", "urlsByUrlRegex", parameters);
         }
     }
 }

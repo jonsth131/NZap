@@ -93,7 +93,7 @@ namespace NZap
 
         public IApiResult CallApi(string uri, IDictionary<string, string> parameters)
         {
-            var requestUri = UriHelper.BuildZapUri(_host, _port, _https, uri, parameters);
+            var requestUri = UriHelper.BuildZapUri(_host, _port, uri, parameters);
             string result;
             using (var webClient = new WebClient())
             {
