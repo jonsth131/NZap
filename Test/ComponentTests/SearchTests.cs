@@ -5,12 +5,14 @@ namespace Tests.ComponentTests
     [TestFixture]
     public class SearchTests : TestBase
     {
+        private const string Regex = "^1$";
+
         #region Views
         [Test]
         public void TestGetMessagesByHeaderRegex()
         {
             const int expected = 0;
-            var apiResult = ZapClient.Search.GetMessagesByHeaderRegex("^1$");
+            var apiResult = ZapClient.Search.GetMessagesByHeaderRegex(Regex);
             ResultAsserts(apiResult, expected);
         }
 
@@ -18,7 +20,7 @@ namespace Tests.ComponentTests
         public void TestGetMessagesByRequestRegex()
         {
             const int expected = 0;
-            var apiResult = ZapClient.Search.GetMessagesByRequestRegex("^1$");
+            var apiResult = ZapClient.Search.GetMessagesByRequestRegex(Regex);
             ResultAsserts(apiResult, expected);
         }
 
@@ -26,7 +28,7 @@ namespace Tests.ComponentTests
         public void TestGetMessagesByResponseRegex()
         {
             const int expected = 0;
-            var apiResult = ZapClient.Search.GetMessagesByResponseRegex("^1$");
+            var apiResult = ZapClient.Search.GetMessagesByResponseRegex(Regex);
             ResultAsserts(apiResult, expected);
         }
 
@@ -34,7 +36,7 @@ namespace Tests.ComponentTests
         public void TestGetMessagesByUrlRegex()
         {
             const int expected = 0;
-            var apiResult = ZapClient.Search.GetMessagesByUrlRegex("^1$");
+            var apiResult = ZapClient.Search.GetMessagesByUrlRegex(Regex);
             ResultAsserts(apiResult, expected);
         }
 
@@ -42,7 +44,7 @@ namespace Tests.ComponentTests
         public void TestGetUrlsByHeaderRegex()
         {
             const int expected = 0;
-            var apiResult = ZapClient.Search.GetUrlsByHeaderRegex("^1$");
+            var apiResult = ZapClient.Search.GetUrlsByHeaderRegex(Regex);
             ResultAsserts(apiResult, expected);
         }
 
@@ -50,7 +52,7 @@ namespace Tests.ComponentTests
         public void TestGetUrlsByRequestRegex()
         {
             const int expected = 0;
-            var apiResult = ZapClient.Search.GetUrlsByRequestRegex("^1$");
+            var apiResult = ZapClient.Search.GetUrlsByRequestRegex(Regex);
             ResultAsserts(apiResult, expected);
         }
 
@@ -58,7 +60,7 @@ namespace Tests.ComponentTests
         public void TestGetUrlsByResponseRegex()
         {
             const int expected = 0;
-            var apiResult = ZapClient.Search.GetUrlsByResponseRegex("^1$");
+            var apiResult = ZapClient.Search.GetUrlsByResponseRegex(Regex);
             ResultAsserts(apiResult, expected);
         }
 
@@ -66,7 +68,7 @@ namespace Tests.ComponentTests
         public void TestGetUrlsByUrlRegex()
         {
             const int expected = 0;
-            var apiResult = ZapClient.Search.GetUrlsByUrlRegex("^1$");
+            var apiResult = ZapClient.Search.GetUrlsByUrlRegex(Regex);
             ResultAsserts(apiResult, expected);
         }
         #endregion

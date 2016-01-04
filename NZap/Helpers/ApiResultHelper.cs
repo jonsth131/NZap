@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NZap.Entities;
 
@@ -21,36 +22,45 @@ namespace NZap.Helpers
                 else if (type.BaseType == typeof(Array))
                 {
                     var value = (Array)obj.Value;
-                    foreach (var element in value)
-                    {
-                        var list = CreateApiResultList(element);
-                        list.Key = obj.Key;
-                        apiResult.ResultList.Add(list);
-                    }
+                    apiResultList = CreateApiResultList(obj, value);
                 }
+                if (apiResultList.ApiResultElements.Count != 0) apiResult.ResultList.Add(apiResultList);
             }
-            if (apiResultList.ApiResultElements.Count != 0) apiResult.ResultList.Add(apiResultList);
             return apiResult;
         }
 
-        private static ApiResultList CreateApiResultList(object obj)
+        private static ApiResultList CreateApiResultList(KeyValuePair<string, object> obj, IEnumerable value)
         {
-            var apiResultList = new ApiResultList();
-            if (obj.GetType() != typeof(Dictionary<string, object>)) return apiResultList;
-            var dict = (Dictionary<string, object>)obj;
-            foreach (var pair in dict)
+            var list = new ApiResultList {Key = obj.Key};
+            foreach (var element in value)
             {
-                apiResultList.ApiResultElements.Add(CreateApiResultElement(pair));
+                var apiResultElement = new ApiResultElement();
+                if (element.GetType() == typeof (Dictionary<string, object>))
+                {
+                    apiResultElement = CreateApiResultElement(obj);
+                }
+                else if (element is string)
+                {
+                    var elementValue = (string) element;
+                    apiResultElement = CreateApiResultElement(string.Empty, elementValue);
+                }
+                list.ApiResultElements.Add(apiResultElement);
             }
-            return apiResultList;
+            return list;
         }
 
         private static ApiResultElement CreateApiResultElement(KeyValuePair<string, object> obj)
         {
+            var key = obj.Key;
             var value = obj.Value as string;
+            return CreateApiResultElement(key, value);
+        }
+
+        private static ApiResultElement CreateApiResultElement(string key, string value)
+        {
             return new ApiResultElement
             {
-                Key = obj.Key,
+                Key = key,
                 Value = value
             };
         }

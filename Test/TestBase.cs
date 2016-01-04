@@ -28,7 +28,6 @@ namespace Tests
         {
             ResultAsserts(apiResult, expected);
             var actual = apiResult.ResultList.Count;
-            if (actual == 0) return;
             var apiResultElement = apiResult.ResultList.ElementAt(actual - 1);
             StringAssert.Contains(expectedKey, apiResultElement.Key);
         }
