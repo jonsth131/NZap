@@ -77,21 +77,42 @@ namespace NZap.Components
             parameters.Add("scriptEngine", scriptEngine);
             parameters.Add("fileName", fileName);
             if (scriptDescription != null) parameters.Add("scriptDescription", scriptDescription);
-            return _zapClient.CallApi(Component, "action", "load", parameters);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", "load", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"Failed to load script: {scriptName}");
+            }
         }
 
         public IApiResult Remove(string apikey, string scriptName)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("scriptName", scriptName);
-            return _zapClient.CallApi(Component, "action", "remove", parameters);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", "remove", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"No script with name: {scriptName}");
+            }
         }
 
         public IApiResult RunStandAloneScript(string apikey, string scriptName)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("scriptName", scriptName);
-            return _zapClient.CallApi(Component, "action", "runStandAloneScript", parameters);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", "runStandAloneScript", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"No script with name: {scriptName}");
+            }
         }
     }
 }

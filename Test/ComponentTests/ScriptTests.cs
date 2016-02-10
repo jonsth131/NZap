@@ -37,5 +37,37 @@ namespace Tests.ComponentTests
             var webException = Assert.Throws<ZapApiException>(() => ZapClient.Script.Enable(Apikey, "1"));
             StringAssert.Contains(expectedExceptionMessage, webException.Message);
         }
+
+        [Test]
+        public void TestLoad()
+        {
+            const string expectedExceptionMessage = "Failed to load script: 1";
+            var webException = Assert.Throws<ZapApiException>(() => ZapClient.Script.Load(Apikey, "1", "1", "1", "1"));
+            StringAssert.Contains(expectedExceptionMessage, webException.Message);
+        }
+
+        [Test]
+        public void TestLoadWithScriptDescription()
+        {
+            const string expectedExceptionMessage = "Failed to load script: 1";
+            var webException = Assert.Throws<ZapApiException>(() => ZapClient.Script.Load(Apikey, "1", "1", "1", "1", "1"));
+            StringAssert.Contains(expectedExceptionMessage, webException.Message);
+        }
+
+        [Test]
+        public void TestRemove()
+        {
+            const string expectedExceptionMessage = "No script with name: 1";
+            var webException = Assert.Throws<ZapApiException>(() => ZapClient.Script.Remove(Apikey, "1"));
+            StringAssert.Contains(expectedExceptionMessage, webException.Message);
+        }
+
+        [Test]
+        public void TestRunStandAloneScript()
+        {
+            const string expectedExceptionMessage = "No script with name: 1";
+            var webException = Assert.Throws<ZapApiException>(() => ZapClient.Script.RunStandAloneScript(Apikey, "1"));
+            StringAssert.Contains(expectedExceptionMessage, webException.Message);
+        }
     }
 }
