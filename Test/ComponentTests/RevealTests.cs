@@ -11,9 +11,8 @@ namespace Tests.ComponentTests
         {
             const int expected = 0;
             const string expectedKey = "reveal";
-            const string expectecValue = "true";
             var apiResult = ZapClient.Reveal.GetReveal();
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            SingleResultAsserts(apiResult, expected, expectedKey);
         }
         #endregion
 
@@ -22,20 +21,16 @@ namespace Tests.ComponentTests
         public void TestSetRevealToTrueShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Reveal.SetReveal(Apikey, true);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetRevealToFalseShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Reveal.SetReveal(Apikey, false);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
         #endregion
     }

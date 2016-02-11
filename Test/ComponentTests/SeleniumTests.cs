@@ -39,30 +39,24 @@ namespace Tests.ComponentTests
         public void TestSetOptionChromeDriverPathShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Selenium.SetOptionChromeDriverPath(Apikey, "1");
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetOptionIeDriverPathShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Selenium.SetOptionIeDriverPath(Apikey, "1");
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetOptionPhantomJsBinaryPathShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Selenium.SetOptionPhantomJsBinaryPath(Apikey, "1");
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
         #endregion
     }

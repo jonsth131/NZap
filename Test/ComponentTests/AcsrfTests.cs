@@ -18,12 +18,10 @@ namespace Tests.ComponentTests
         public void TestAddAndRemoveOptionTokenShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Acsrf.AddOptionToken(Apikey, "test");
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
             apiResult = ZapClient.Acsrf.RemoveOptionToken(Apikey, "test");
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
     }
 }

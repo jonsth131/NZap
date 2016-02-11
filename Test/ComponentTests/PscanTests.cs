@@ -31,110 +31,88 @@ namespace Tests.ComponentTests
         public void TestDisableAllScannersShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.DisableAllScanners(Apikey);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestDisableScannersShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.DisableScanners(Apikey, "1");
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestEnableAllScannersShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.EnableAllScanners(Apikey);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestEnableScannersShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.EnableScanners(Apikey, "1");
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetEnabledFalseShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.SetEnabled(Apikey, false);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetEnabledTrueShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.SetEnabled(Apikey, true);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetScannerAlertThresholdToDefaultShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.DEFAULT);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetScannerAlertThresholdToHighShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.HIGH);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetScannerAlertThresholdToLowShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.LOW);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetScannerAlertThresholdToMediumShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.MEDIUM);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
 
         [Test]
         public void TestSetScannerAlertThresholdToOffShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Pscan.SetScannerAlertThreshold(Apikey, "50001", AlertThreshold.OFF);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
         #endregion
     }

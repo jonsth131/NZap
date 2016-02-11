@@ -316,10 +316,8 @@ namespace Tests.ComponentTests
         public void TestClearExcludedFromProxyShouldSucceed()
         {
             const int expected = 0;
-            const string expectedKey = "Result";
-            const string expectecValue = "OK";
             var apiResult = ZapClient.Core.ClearExcludedFromProxy(Apikey);
-            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
+            ActionResultAsserts(apiResult, expected);
         }
         #endregion
 
