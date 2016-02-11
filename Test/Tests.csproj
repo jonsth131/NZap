@@ -48,6 +48,8 @@
     <Compile Include="ComponentTests\CoreTests.cs" />
     <Compile Include="ComponentTests\PscanTests.cs" />
     <Compile Include="ComponentTests\RevealTests.cs" />
+    <Compile Include="ComponentTests\ScriptTests.cs" />
+    <Compile Include="ComponentTests\SearchTests.cs" />
     <Compile Include="ComponentTests\SeleniumTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />

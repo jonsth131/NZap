@@ -1,4 +1,6 @@
-﻿using NZap.Entities;
+﻿using System;
+using NZap.Entities;
+using NZap.Exceptions;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -42,14 +44,28 @@ namespace NZap.Components
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("scriptName", scriptName);
-            return _zapClient.CallApi(Component, "action", "disable", parameters);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", "disable", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"No script with name: {scriptName}");
+            }
         }
 
         public IApiResult Enable(string apikey, string scriptName)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("scriptName", scriptName);
-            return _zapClient.CallApi(Component, "action", "enable", parameters);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", "enable", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"No script with name: {scriptName}");
+            }
         }
 
         public IApiResult Load(string apikey, string scriptName, string scriptType, string scriptEngine, string fileName,
@@ -61,21 +77,42 @@ namespace NZap.Components
             parameters.Add("scriptEngine", scriptEngine);
             parameters.Add("fileName", fileName);
             if (scriptDescription != null) parameters.Add("scriptDescription", scriptDescription);
-            return _zapClient.CallApi(Component, "action", "load", parameters);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", "load", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"Failed to load script: {scriptName}");
+            }
         }
 
         public IApiResult Remove(string apikey, string scriptName)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("scriptName", scriptName);
-            return _zapClient.CallApi(Component, "action", "remove", parameters);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", "remove", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"No script with name: {scriptName}");
+            }
         }
 
         public IApiResult RunStandAloneScript(string apikey, string scriptName)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("scriptName", scriptName);
-            return _zapClient.CallApi(Component, "action", "runStandAloneScript", parameters);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", "runStandAloneScript", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"No script with name: {scriptName}");
+            }
         }
     }
 }

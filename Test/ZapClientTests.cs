@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using NUnit.Framework;
 
 namespace Tests
@@ -57,7 +58,28 @@ namespace Tests
         [Test]
         public void CorrectPathShouldSucceed()
         {
+            const int expectedCount = 1;
+            const string expectedKey = "version";
             var result = ZapClient.CallApi("core", "view", "version");
+            ResultAsserts(result, expectedCount, expectedKey);
+        }
+
+        [Test]
+        public void NullParameterDictShouldSucceed()
+        {
+            const int expectedCount = 1;
+            const string expectedKey = "version";
+            var result = ZapClient.CallApi("core", "view", "version", null);
+            ResultAsserts(result, expectedCount, expectedKey);
+        }
+
+        [Test]
+        public void EmptyParameterDictShouldSucceed()
+        {
+            const int expectedCount = 1;
+            const string expectedKey = "version";
+            var result = ZapClient.CallApi("core", "view", "version", new Dictionary<string, string>());
+            ResultAsserts(result, expectedCount, expectedKey);
         }
     }
 }

@@ -17,10 +17,17 @@ namespace Tests
         }
 
         #region Helper methods
-        internal static void ResultAsserts(IApiResult apiResult, int expected, string expectedKey)
+
+        internal static void ResultAsserts(IApiResult apiResult, int expected)
         {
             var actual = apiResult.ResultList.Count;
             Assert.AreEqual(expected, actual);
+        }
+
+        internal static void ResultAsserts(IApiResult apiResult, int expected, string expectedKey)
+        {
+            ResultAsserts(apiResult, expected);
+            var actual = apiResult.ResultList.Count;
             var apiResultElement = apiResult.ResultList.ElementAt(actual - 1);
             StringAssert.Contains(expectedKey, apiResultElement.Key);
         }

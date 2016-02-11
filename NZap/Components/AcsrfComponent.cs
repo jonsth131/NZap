@@ -11,9 +11,6 @@ namespace NZap.Components
         /* ACTIONS */
         IApiResult AddOptionToken(string apikey, string name);
         IApiResult RemoveOptionToken(string apikey, string name);
-
-        /* OTHERS */
-        IApiResult GenForm(string apikey, string hrefId);
     }
 
     public class AcsrfComponent : IAcsrfComponent
@@ -60,18 +57,6 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("String", name);
             return _zapClient.CallApi(Component, "action", "removeOptionToken", parameters);
-        }
-
-        /// <summary>
-        /// Generate a form for testing lack of anti CSRF tokens - typically invoked via ZAP
-        /// </summary>
-        /// <param name="apikey"></param>
-        /// <param name="hrefId"></param>
-        /// <returns></returns>
-        public IApiResult GenForm(string apikey, string hrefId)
-        {
-            //TODO
-            throw new System.NotImplementedException();
         }
     }
 }
