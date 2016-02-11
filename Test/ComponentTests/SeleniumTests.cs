@@ -9,28 +9,28 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetOptionChromeDriverPathShouldSucceed()
         {
-            const int expected = 1;
+            const int expected = 0;
             const string expectedKey = "ChromeDriverPath";
             var apiResult = ZapClient.Selenium.GetOptionChromeDriverPath();
-            ResultAsserts(apiResult, expected, expectedKey);
+            SingleResultAsserts(apiResult, expected, expectedKey);
         }
 
         [Test]
         public void TestGetOptionIeDriverPathShouldSucceed()
         {
-            const int expected = 1;
+            const int expected = 0;
             const string expectedKey = "IeDriverPath";
             var apiResult = ZapClient.Selenium.GetOptionIeDriverPath();
-            ResultAsserts(apiResult, expected, expectedKey);
+            SingleResultAsserts(apiResult, expected, expectedKey);
         }
 
         [Test]
         public void TestGetOptionPhantomJsBinaryPathShouldSucceed()
         {
-            const int expected = 1;
+            const int expected = 0;
             const string expectedKey = "PhantomJsBinaryPath";
             var apiResult = ZapClient.Selenium.GetOptionPhantomJsBinaryPath();
-            ResultAsserts(apiResult, expected, expectedKey);
+            SingleResultAsserts(apiResult, expected, expectedKey);
         }
         #endregion
 
@@ -38,25 +38,31 @@ namespace Tests.ComponentTests
         [Test]
         public void TestSetOptionChromeDriverPathShouldSucceed()
         {
-            const int expected = 1;
+            const int expected = 0;
+            const string expectedKey = "Result";
+            const string expectecValue = "OK";
             var apiResult = ZapClient.Selenium.SetOptionChromeDriverPath(Apikey, "1");
-            ActionResultAsserts(apiResult, expected);
+            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
         }
 
         [Test]
         public void TestSetOptionIeDriverPathShouldSucceed()
         {
-            const int expected = 1;
+            const int expected = 0;
+            const string expectedKey = "Result";
+            const string expectecValue = "OK";
             var apiResult = ZapClient.Selenium.SetOptionIeDriverPath(Apikey, "1");
-            ActionResultAsserts(apiResult, expected);
+            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
         }
 
         [Test]
         public void TestSetOptionPhantomJsBinaryPathShouldSucceed()
         {
-            const int expected = 1;
+            const int expected = 0;
+            const string expectedKey = "Result";
+            const string expectecValue = "OK";
             var apiResult = ZapClient.Selenium.SetOptionPhantomJsBinaryPath(Apikey, "1");
-            ActionResultAsserts(apiResult, expected);
+            ResultAssertsWithValue(apiResult, expected, expectedKey, expectecValue);
         }
         #endregion
     }

@@ -24,6 +24,12 @@ namespace Tests
             Assert.AreEqual(expected, actual);
         }
 
+        internal static void SingleResultAsserts(IApiResult apiResult, int expected, string expectedKey)
+        {
+            ResultAsserts(apiResult, expected);
+            StringAssert.Contains(expectedKey, apiResult.Key);
+        }
+
         internal static void ResultAsserts(IApiResult apiResult, int expected, string expectedKey)
         {
             ResultAsserts(apiResult, expected);
@@ -36,10 +42,8 @@ namespace Tests
         {
             var actual = apiResult.ResultList.Count;
             Assert.AreEqual(expected, actual);
-            var apiResultList = apiResult.ResultList.ElementAt(actual - 1);
-            var apiResultElement = apiResultList.ApiResultElements.ElementAt(actual - 1);
-            StringAssert.Contains(expectedKey, apiResultElement.Key);
-            StringAssert.Contains(expectedValue, apiResultElement.Value);
+            StringAssert.Contains(expectedKey, apiResult.Key);
+            StringAssert.Contains(expectedValue, apiResult.Value);
         }
 
         internal static void ActionResultAsserts(IApiResult apiResult, int expected)

@@ -16,8 +16,15 @@ namespace NZap.Helpers
                 var type = obj.Value.GetType();
                 if (type == typeof(string))
                 {
-                    apiResultList.Key = obj.Key;
-                    apiResultList.ApiResultElements.Add(CreateApiResultElement(obj));
+                    if (dict.Count == 1)
+                    {
+                        apiResult.Key = obj.Key;
+                        apiResult.Value = obj.Value as string;
+                    }
+                    else {
+                        apiResultList.Key = obj.Key;
+                        apiResultList.ApiResultElements.Add(CreateApiResultElement(obj));
+                    }
                 }
                 else if (type.BaseType == typeof(Array))
                 {
@@ -31,17 +38,17 @@ namespace NZap.Helpers
 
         private static ApiResultList CreateApiResultList(KeyValuePair<string, object> obj, IEnumerable value)
         {
-            var list = new ApiResultList {Key = obj.Key};
+            var list = new ApiResultList { Key = obj.Key };
             foreach (var element in value)
             {
                 var apiResultElement = new ApiResultElement();
-                if (element.GetType() == typeof (Dictionary<string, object>))
+                if (element.GetType() == typeof(Dictionary<string, object>))
                 {
                     apiResultElement = CreateApiResultElement(obj);
                 }
                 else if (element is string)
                 {
-                    var elementValue = (string) element;
+                    var elementValue = (string)element;
                     apiResultElement = CreateApiResultElement(string.Empty, elementValue);
                 }
                 list.ApiResultElements.Add(apiResultElement);
