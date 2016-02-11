@@ -19,13 +19,13 @@ namespace NZap.Helpers
             return stringBuilder.ToString();
         }
 
-        internal static Uri BuildZapUri(string host, int port, bool https, string uri, IDictionary<string, string> parameters)
+        internal static Uri BuildZapUri(string host, int port, string uri, IDictionary<string, string> parameters)
         {
             var uriBuilder = new UriBuilder
             {
                 Host = host,
                 Port = port,
-                Scheme = https ? "https" : "http",
+                Scheme = "http",
                 Path = uri,
                 Query = ParameterHelper.GetParameterStringFromDictionary(parameters)
             };
