@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using NZap.Components;
 using NZap.Entities;
@@ -32,6 +33,8 @@ namespace NZap
         IApiResult CallApi(string uri, IDictionary<string, string> parameters);
         IApiResult CallApi(string component, string type, string action);
         IApiResult CallApi(string component, string type, string action, IDictionary<string, string> parameters);
+        IAlertResult GetAlert(int id);
+        List<IAlertResult> GetAlerts(string baseurl = "", int start = 0, int count = 0);
     }
 
     public class ZapClient : IZapClient
@@ -94,11 +97,7 @@ namespace NZap
         public IApiResult CallApi(string uri, IDictionary<string, string> parameters)
         {
             var requestUri = UriHelper.BuildZapUri(_host, _port, uri, parameters);
-            string result;
-            using (var webClient = new WebClient())
-            {
-                result = webClient.DownloadString(requestUri);
-            }
+            var result = GetApiResult(requestUri);
             return SerializationHelper.DeserializeJsonToApiResult(result);
         }
 
@@ -112,6 +111,42 @@ namespace NZap
         {
             var uri = UriHelper.CreateUriStringFromParameters(component, type, action, _host);
             return CallApi(uri, parameters);
+        }
+
+        public IAlertResult GetAlert(int id)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                {"id", id.ToString()}
+            };
+            var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alert", _host);
+            var requestUri = UriHelper.BuildZapUri(_host, _port, uri, parameters);
+            var result = GetApiResult(requestUri);
+            return SerializationHelper.DeserializeJsonToAlertResult(result);
+        }
+
+        public List<IAlertResult> GetAlerts(string baseurl = "", int start = 0, int count = 0)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                {"baseurl", baseurl},
+                {"start", start.ToString()},
+                {"count", count.ToString()}
+            };
+            var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alerts", _host);
+            var requestUri = UriHelper.BuildZapUri(_host, _port, uri, parameters);
+            var result = GetApiResult(requestUri);
+            return SerializationHelper.DeserializeJsonToAlertResultList(result);
+        }
+
+        private static string GetApiResult(Uri requestUri)
+        {
+            string result;
+            using (var webClient = new WebClient())
+            {
+                result = webClient.DownloadString(requestUri);
+            }
+            return result;
         }
     }
 }

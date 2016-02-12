@@ -61,11 +61,13 @@
     <Compile Include="Components\SessionManagementComponent.cs" />
     <Compile Include="Components\SpiderComponent.cs" />
     <Compile Include="Components\UsersComponent.cs" />
+    <Compile Include="Entities\AlertResult.cs" />
     <Compile Include="Entities\ApiResult.cs" />
     <Compile Include="Entities\ApiResultElement.cs" />
     <Compile Include="Entities\ApiResultList.cs" />
     <Compile Include="Enums\AlertThreshold.cs" />
     <Compile Include="Exceptions\ZapApiException.cs" />
+    <Compile Include="Helpers\AlertResultHelper.cs" />
     <Compile Include="Helpers\ApikeyHelper.cs" />
     <Compile Include="Helpers\ApiResultHelper.cs" />
     <Compile Include="Helpers\ParameterHelper.cs" />

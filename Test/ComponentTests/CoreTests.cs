@@ -10,24 +10,24 @@ namespace Tests.ComponentTests
     public class CoreTests : TestBase
     {
         #region Views
-        [Test]
-        public void TestGetAlertsShouldSucceed()
-        {
-            const int expected = 0;
-            var apiResult = ZapClient.Core.GetAlerts();
-            var actual = apiResult.ResultList.Count;
-            Assert.AreEqual(expected, actual);
-        }
+        //[Test]
+        //public void TestGetAlertsShouldSucceed()
+        //{
+        //    const int expected = 0;
+        //    var apiResult = ZapClient.Core.GetAlerts();
+        //    var actual = apiResult.ResultList.Count;
+        //    Assert.AreEqual(expected, actual);
+        //}
 
-        [Test]
-        public void TestGetAlertsWithParametersShouldSucceed()
-        {
-            const int expected = 0;
-            var parameters = new Dictionary<string, string> { { "baseurl", "localhost" }, { "start", "1" }, { "count", "1" } };
-            var apiResult = ZapClient.Core.GetAlerts(parameters);
-            var actual = apiResult.ResultList.Count;
-            Assert.AreEqual(expected, actual);
-        }
+        //[Test]
+        //public void TestGetAlertsWithParametersShouldSucceed()
+        //{
+        //    const int expected = 0;
+        //    var parameters = new Dictionary<string, string> { { "baseurl", "localhost" }, { "start", "1" }, { "count", "1" } };
+        //    var apiResult = ZapClient.Core.GetAlerts(parameters);
+        //    var actual = apiResult.ResultList.Count;
+        //    Assert.AreEqual(expected, actual);
+        //}
 
         [Test]
         public void TestGetExcludedFromProxyShouldSucceed()

@@ -7,8 +7,8 @@ namespace NZap.Components
     public interface ICoreComponent
     {
         /* VIEWS */
-        IApiResult GetAlert(string id);
-        IApiResult GetAlerts(IDictionary<string, string> parameters = null);
+        //IApiResult GetAlert(string id);
+        //IApiResult GetAlerts(IDictionary<string, string> parameters = null);
         IApiResult GetExcludedFromProxy();
         IApiResult GetHomeDirectory();
         IApiResult GetHosts();
@@ -91,16 +91,16 @@ xmlreport ()
             _zapClient = zapClient;
         }
 
-        public IApiResult GetAlert(string id)
-        {
-            var parameters = new Dictionary<string, string> { { "id", id } };
-            return _zapClient.CallApi(Component, "view", "alert", parameters);
-        }
+        //public IApiResult GetAlert(string id)
+        //{
+        //    var parameters = new Dictionary<string, string> { { "id", id } };
+        //    return _zapClient.CallApi(Component, "view", "alert", parameters);
+        //}
 
-        public IApiResult GetAlerts(IDictionary<string, string> parameters = null)
-        {
-            return _zapClient.CallApi(Component, "view", "alerts", parameters);
-        }
+        //public IApiResult GetAlerts(IDictionary<string, string> parameters = null)
+        //{
+        //    return _zapClient.CallApi(Component, "view", "alerts", parameters);
+        //}
 
         public IApiResult GetExcludedFromProxy()
         {
