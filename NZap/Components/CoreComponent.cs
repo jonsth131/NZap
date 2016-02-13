@@ -7,8 +7,8 @@ namespace NZap.Components
     public interface ICoreComponent
     {
         /* VIEWS */
-        //IApiResult GetAlert(string id);
-        //IApiResult GetAlerts(IDictionary<string, string> parameters = null);
+        IAlertResult GetAlert(int id);
+        List<IAlertResult> GetAlerts(string baseurl = "", int start = 0, int count = 0);
         IApiResult GetExcludedFromProxy();
         IApiResult GetHomeDirectory();
         IApiResult GetHosts();
@@ -91,16 +91,31 @@ xmlreport ()
             _zapClient = zapClient;
         }
 
-        //public IApiResult GetAlert(string id)
-        //{
-        //    var parameters = new Dictionary<string, string> { { "id", id } };
-        //    return _zapClient.CallApi(Component, "view", "alert", parameters);
-        //}
+        public IAlertResult GetAlert(int id)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                {"id", id.ToString()}
+            };
+            var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alert");
+            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, parameters);
+            var result = _zapClient.GetApiResult(requestUri);
+            return SerializationHelper.DeserializeJsonToAlertResult(result);
+        }
 
-        //public IApiResult GetAlerts(IDictionary<string, string> parameters = null)
-        //{
-        //    return _zapClient.CallApi(Component, "view", "alerts", parameters);
-        //}
+        public List<IAlertResult> GetAlerts(string baseurl = "", int start = 0, int count = 0)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                {"baseurl", baseurl},
+                {"start", start.ToString()},
+                {"count", count.ToString()}
+            };
+            var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alerts");
+            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, parameters);
+            var result = _zapClient.GetApiResult(requestUri);
+            return SerializationHelper.DeserializeJsonToAlertResultList(result);
+        }
 
         public IApiResult GetExcludedFromProxy()
         {

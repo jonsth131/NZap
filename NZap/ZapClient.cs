@@ -9,6 +9,8 @@ namespace NZap
 {
     public interface IZapClient
     {
+        string Host { get;  }
+        int Port { get; }
         IAcsrfComponent Acsrf { get; }
         IAjaxSpiderComponent AjaxSpider { get; }
         IAscanComponent Ascan { get; }
@@ -33,14 +35,13 @@ namespace NZap
         IApiResult CallApi(string uri, IDictionary<string, string> parameters);
         IApiResult CallApi(string component, string type, string action);
         IApiResult CallApi(string component, string type, string action, IDictionary<string, string> parameters);
-        IAlertResult GetAlert(int id);
-        List<IAlertResult> GetAlerts(string baseurl = "", int start = 0, int count = 0);
+        string GetApiResult(Uri requestUri);
     }
 
     public class ZapClient : IZapClient
     {
-        private readonly string _host;
-        private readonly int _port;
+        public string Host { get; }
+        public int Port { get; }
 
         public IAcsrfComponent Acsrf { get; }
         public IAjaxSpiderComponent AjaxSpider { get; }
@@ -65,8 +66,8 @@ namespace NZap
 
         public ZapClient(string host, int port)
         {
-            _host = host;
-            _port = port;
+            Host = host;
+            Port = port;
             Acsrf = new AcsrfComponent(this);
             AjaxSpider = new AjaxSpiderComponent(this);
             Ascan = new AscanComponent(this);
@@ -96,50 +97,24 @@ namespace NZap
 
         public IApiResult CallApi(string uri, IDictionary<string, string> parameters)
         {
-            var requestUri = UriHelper.BuildZapUri(_host, _port, uri, parameters);
+            var requestUri = UriHelper.BuildZapUri(Host, Port, uri, parameters);
             var result = GetApiResult(requestUri);
             return SerializationHelper.DeserializeJsonToApiResult(result);
         }
 
         public IApiResult CallApi(string component, string type, string action)
         {
-            var uri = UriHelper.CreateUriStringFromParameters(component, type, action, _host);
+            var uri = UriHelper.CreateUriStringFromParameters(component, type, action);
             return CallApi(uri);
         }
 
         public IApiResult CallApi(string component, string type, string action, IDictionary<string, string> parameters)
         {
-            var uri = UriHelper.CreateUriStringFromParameters(component, type, action, _host);
+            var uri = UriHelper.CreateUriStringFromParameters(component, type, action);
             return CallApi(uri, parameters);
         }
 
-        public IAlertResult GetAlert(int id)
-        {
-            var parameters = new Dictionary<string, string>
-            {
-                {"id", id.ToString()}
-            };
-            var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alert", _host);
-            var requestUri = UriHelper.BuildZapUri(_host, _port, uri, parameters);
-            var result = GetApiResult(requestUri);
-            return SerializationHelper.DeserializeJsonToAlertResult(result);
-        }
-
-        public List<IAlertResult> GetAlerts(string baseurl = "", int start = 0, int count = 0)
-        {
-            var parameters = new Dictionary<string, string>
-            {
-                {"baseurl", baseurl},
-                {"start", start.ToString()},
-                {"count", count.ToString()}
-            };
-            var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alerts", _host);
-            var requestUri = UriHelper.BuildZapUri(_host, _port, uri, parameters);
-            var result = GetApiResult(requestUri);
-            return SerializationHelper.DeserializeJsonToAlertResultList(result);
-        }
-
-        private static string GetApiResult(Uri requestUri)
+        public string GetApiResult(Uri requestUri)
         {
             string result;
             using (var webClient = new WebClient())

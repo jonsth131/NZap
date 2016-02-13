@@ -8,26 +8,27 @@ namespace NZap.Helpers
     {
         internal static IApiResult DeserializeJsonToApiResult(string json)
         {
-            var deserializeObject = DeserializeObject(json);
-            if (deserializeObject.GetType() != typeof(Dictionary<string, object>)) return new ApiResult();
-            var dict = (Dictionary<string, object>)deserializeObject;
+            var dict = GetDictionaryFromJson(json);
             return ApiResultHelper.CreateApiResult(dict);
         }
 
         internal static IAlertResult DeserializeJsonToAlertResult(string json)
         {
-            var deserializeObject = DeserializeObject(json);
-            if (deserializeObject.GetType() != typeof(Dictionary<string, object>)) return new AlertResult();
-            var dict = (Dictionary<string, object>)deserializeObject;
+            var dict = GetDictionaryFromJson(json);
             return AlertResultHelper.CreateAlertResult(dict);
         }
 
         internal static List<IAlertResult> DeserializeJsonToAlertResultList(string json)
         {
-            var deserializeObject = DeserializeObject(json);
-            if (deserializeObject.GetType() != typeof(Dictionary<string, object>)) return new List<IAlertResult>();
-            var dict = (Dictionary<string, object>)deserializeObject;
+            var dict = GetDictionaryFromJson(json);
             return AlertResultHelper.CreateAlertResultList(dict);
+        }
+
+        private static Dictionary<string, object> GetDictionaryFromJson(string json)
+        {
+            var deserializeObject = DeserializeObject(json);
+            if (deserializeObject.GetType() != typeof (Dictionary<string, object>)) return new Dictionary<string, object>();
+            return (Dictionary<string, object>) deserializeObject;
         }
 
         private static object DeserializeObject(string json)

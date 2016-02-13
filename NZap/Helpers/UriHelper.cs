@@ -6,13 +6,13 @@ namespace NZap.Helpers
 {
     internal class UriHelper
     {
-        private static string _scheme = "http";
-        private static string _responseType = "JSON";
+        private const string Scheme = "http";
+        private const string ResponseType = "JSON";
 
-        internal static string CreateUriStringFromParameters(string component, string type, string action, string uri)
+        internal static string CreateUriStringFromParameters(string component, string type, string action)
         {
             return new StringBuilder()
-                .Append(_responseType)
+                .Append(ResponseType)
                 .Append("/")
                 .Append(component)
                 .Append("/")
@@ -29,7 +29,7 @@ namespace NZap.Helpers
             {
                 Host = host,
                 Port = port,
-                Scheme = _scheme,
+                Scheme = Scheme,
                 Path = uri,
                 Query = ParameterHelper.GetParameterStringFromDictionary(parameters)
             }.Uri;
