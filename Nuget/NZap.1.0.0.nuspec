@@ -12,6 +12,6 @@
         <copyright>2016</copyright>
     </metadata>
     <files>
-        <file src="lib\net45\NZap.dll" target="lib\net45\NZap.dll" />
+        <file src="..\NZap\bin\release\NZap.dll" target="lib\net45\NZap.dll" />
     </files>
 </package>
