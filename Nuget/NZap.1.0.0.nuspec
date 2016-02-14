@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>NZap</id>
+        <version>1.0.0</version>
+        <title>NZap</title>
+        <authors>https://github.com/jonsth131</authors>
+        <owners>https://github.com/jonsth131</owners>
+        <projectUrl>https://github.com/jonsth131/NZap</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>.Net API for OWASP ZAP</description>
+        <copyright>2016</copyright>
+    </metadata>
+    <files>
+        <file src="lib\net45\NZap.dll" target="lib\net45\NZap.dll" />
+    </files>
+</package>
