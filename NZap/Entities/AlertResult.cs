@@ -19,40 +19,40 @@ namespace NZap.Entities
         string Attack { get; }
         string Risk { get; }
         string Id { get; }
-        void AddKeyValue(string key, string value);
+        void AddResult(string key, string value);
     }
 
     public class AlertResult : IAlertResult
     {
         private readonly Dictionary<string, string> _results;
 
-        public string Other => GetValue("other");
-        public string Evidence => GetValue("evidence");
-        public string Cweid => GetValue("cweid");
-        public string Confidence => GetValue("confidence");
-        public string Wascid => GetValue("wascid");
-        public string Description => GetValue("description");
-        public string MessageId => GetValue("messageId");
-        public string Url => GetValue("url");
-        public string Reference => GetValue("reference");
-        public string Solution => GetValue("solution");
-        public string Alert => GetValue("alert");
-        public string Param => GetValue("param");
-        public string Attack => GetValue("attack");
-        public string Risk => GetValue("risk");
-        public string Id => GetValue("id");
+        public string Other => GetResultValue("other");
+        public string Evidence => GetResultValue("evidence");
+        public string Cweid => GetResultValue("cweid");
+        public string Confidence => GetResultValue("confidence");
+        public string Wascid => GetResultValue("wascid");
+        public string Description => GetResultValue("description");
+        public string MessageId => GetResultValue("messageId");
+        public string Url => GetResultValue("url");
+        public string Reference => GetResultValue("reference");
+        public string Solution => GetResultValue("solution");
+        public string Alert => GetResultValue("alert");
+        public string Param => GetResultValue("param");
+        public string Attack => GetResultValue("attack");
+        public string Risk => GetResultValue("risk");
+        public string Id => GetResultValue("id");
 
         public AlertResult()
         {
             _results = new Dictionary<string, string>();
         }
 
-        public void AddKeyValue(string key, string value)
+        public void AddResult(string key, string value)
         {
             _results.Add(key, value);
         }
 
-        private string GetValue(string key)
+        private string GetResultValue(string key)
         {
             return _results.ContainsKey(key) ? _results[key] : string.Empty;
         }

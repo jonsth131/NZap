@@ -29,7 +29,7 @@ namespace NZap.Helpers
             var result = new AlertResult();
             foreach (var valuePair in alert)
             {
-                result.AddKeyValue(valuePair.Key, valuePair.Value as string);
+                result.AddResult(valuePair.Key, valuePair.Value as string);
             }
             return result;
         }

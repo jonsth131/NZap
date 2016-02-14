@@ -48,5 +48,22 @@ namespace Tests.HelperTests
             var actual = UriHelper.BuildZapUri("host", 42, "uri", dict);
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void BuildZapUriWithSpecialCharParametersShouldSucceed()
+        {
+            var expected = new UriBuilder
+            {
+                Host = "host",
+                Port = 42,
+                Scheme = "http",
+                Path = "uri",
+                Query = "entry1%2B%2B=value1%2B%2B"
+            }.Uri;
+
+            var dict = new Dictionary<string, string> { { "entry1++", "value1++" } };
+            var actual = UriHelper.BuildZapUri("host", 42, "uri", dict);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
