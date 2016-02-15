@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -8,7 +9,7 @@ namespace NZap.Components
     {
         /* VIEWS */
         IApiResult GetAuthenticationMethod(string contextId);
-        IApiResult GetAuthenticationMethodConfigParams(string authMethodName);
+        IApiResult GetAuthenticationMethodConfigParams(AuthMethodName authMethodName);
         IApiResult GetLoggedInIndicator(string contextId);
         IApiResult GetLoggedOutIndicator(string contextId);
         IApiResult GetSupportedAuthenticationMethods();
@@ -36,9 +37,9 @@ namespace NZap.Components
             return _zapClient.CallApi(Component, "view", "getAuthenticationMethod", parameters);
         }
 
-        public IApiResult GetAuthenticationMethodConfigParams(string authMethodName)
+        public IApiResult GetAuthenticationMethodConfigParams(AuthMethodName authMethodName)
         {
-            var parameters = new Dictionary<string, string> { { "authMethodName", authMethodName } };
+            var parameters = new Dictionary<string, string> { { "authMethodName", authMethodName.ToString() } };
             return _zapClient.CallApi(Component, "view", "getAuthenticationMethodConfigParams", parameters);
         }
 

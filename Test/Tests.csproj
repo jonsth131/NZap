@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ComponentTests\AcsrfTests.cs" />
     <Compile Include="ComponentTests\AjaxSpiderTests.cs" />
+    <Compile Include="ComponentTests\AuthenticationTests.cs" />
     <Compile Include="ComponentTests\CoreTests.cs" />
     <Compile Include="ComponentTests\PscanTests.cs" />
     <Compile Include="ComponentTests\RevealTests.cs" />
