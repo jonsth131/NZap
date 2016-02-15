@@ -53,6 +53,7 @@
     <Compile Include="ComponentTests\SearchTests.cs" />
     <Compile Include="ComponentTests\SeleniumTests.cs" />
     <Compile Include="HelperTests\ApikeyHelperTests.cs" />
+    <Compile Include="HelperTests\ApiResultHelperTests.cs" />
     <Compile Include="HelperTests\ParameterHelperTests.cs" />
     <Compile Include="HelperTests\SerializationHelperTests.cs" />
     <Compile Include="HelperTests\UriHelperTests.cs" />
