@@ -54,6 +54,7 @@
     <Compile Include="ComponentTests\SeleniumTests.cs" />
     <Compile Include="HelperTests\ApikeyHelperTests.cs" />
     <Compile Include="HelperTests\ParameterHelperTests.cs" />
+    <Compile Include="HelperTests\SerializationHelperTests.cs" />
     <Compile Include="HelperTests\UriHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />

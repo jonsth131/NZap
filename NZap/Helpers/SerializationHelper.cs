@@ -27,7 +27,7 @@ namespace NZap.Helpers
         private static Dictionary<string, object> GetDictionaryFromJson(string json)
         {
             var deserializeObject = DeserializeObject(json);
-            if (deserializeObject.GetType() != typeof (Dictionary<string, object>)) return new Dictionary<string, object>();
+            if (deserializeObject?.GetType() != typeof (Dictionary<string, object>)) return new Dictionary<string, object>();
             return (Dictionary<string, object>) deserializeObject;
         }
 
