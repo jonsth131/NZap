@@ -87,8 +87,8 @@ namespace Tests.HelperTests
         [Test]
         public void DeserializeJsonToApiResulttWithViewJsonShouldSucceed()
         {
-            const int expectedResultLists = 1;
-            const int expectedElements = 14;
+            const int expectedResultLists = 14;
+            const int expectedElements = 4;
             const string json = "{\"scanners\":[{\"alertThreshold\":\"OFF\",\"name\":\"Script passive scan rules\",\"id\":\"50001\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Application Error Disclosure\",\"id\":\"90022\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Incomplete or No Cache-control and Pragma HTTP Header Set\",\"id\":\"10015\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Content-Type Header Missing\",\"id\":\"10019\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Cookie No HttpOnly Flag\",\"id\":\"10010\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Cookie Without Secure Flag\",\"id\":\"10011\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Cross-Domain JavaScript Source File Inclusion\",\"id\":\"10017\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Web Browser XSS Protection Not Enabled\",\"id\":\"10016\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Secure Pages Include Mixed Content\",\"id\":\"10040\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Password Autocomplete in Browser\",\"id\":\"10012\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Private IP Disclosure\",\"id\":\"2\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"Session ID in URL Rewrite\",\"id\":\"3\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"X-Content-Type-Options Header Missing\",\"id\":\"10021\",\"enabled\":\"true\"},{\"alertThreshold\":\"MEDIUM\",\"name\":\"X-Frame-Options Header Not Set\",\"id\":\"10020\",\"enabled\":\"true\"}]}";
             var result = SerializationHelper.DeserializeJsonToApiResult(json);
             var actualResultLists = result.ResultList.Count;

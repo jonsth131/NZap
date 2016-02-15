@@ -29,9 +29,17 @@ namespace NZap.Helpers
                 else if (type.BaseType == typeof(Array))
                 {
                     var value = (Array)obj.Value;
-                    foreach (var resultList in from object element in value select CreateApiResultList(obj.Key, element))
+                    foreach (var element in value)
                     {
-                        apiResult.ResultList.Add(resultList);
+                        var elementType = element.GetType();
+                        if (elementType == typeof(Dictionary<string, object>)) { 
+                            var resultList = CreateApiResultList(obj.Key, element);
+                            apiResult.ResultList.Add(resultList);
+                        } else if (elementType == typeof (string))
+                        {
+                            apiResultList.Key = obj.Key;
+                            apiResultList.ApiResultElements.Add(CreateApiResultElement(obj.Key, element as string));
+                        }
                     }
                 }
                 if (apiResultList.ApiResultElements.Count != 0) apiResult.ResultList.Add(apiResultList);
@@ -42,18 +50,9 @@ namespace NZap.Helpers
         private static ApiResultList CreateApiResultList(string key, object element)
         {
             var list = new ApiResultList { Key = key };
-            if (element.GetType() == typeof(Dictionary<string, object>))
+            var elementValue = (Dictionary<string, object>)element;
+            foreach (var apiResultElement in elementValue.Select(CreateApiResultElement))
             {
-                var elementValue = (Dictionary<string, object>)element;
-                foreach (var apiResultElement in elementValue.Select(CreateApiResultElement))
-                {
-                    list.ApiResultElements.Add(apiResultElement);
-                }
-            }
-            else if (element is string)
-            {
-                var elementValue = (string)element;
-                var apiResultElement = CreateApiResultElement(string.Empty, elementValue);
                 list.ApiResultElements.Add(apiResultElement);
             }
             return list;
