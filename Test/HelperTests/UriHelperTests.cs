@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace Tests.HelperTests
@@ -28,7 +29,7 @@ namespace Tests.HelperTests
                 Query = string.Empty
             }.Uri;
 
-            var actual = UriHelper.BuildZapUri("host", 42, "uri", null);
+            var actual = UriHelper.BuildZapUri("host", 42, "uri", Protocols.http, null);
             Assert.AreEqual(expected, actual);
         }
 
@@ -45,7 +46,7 @@ namespace Tests.HelperTests
             }.Uri;
 
             var dict = new Dictionary<string, string> {{"entry1", "value1"}};
-            var actual = UriHelper.BuildZapUri("host", 42, "uri", dict);
+            var actual = UriHelper.BuildZapUri("host", 42, "uri", Protocols.http, dict);
             Assert.AreEqual(expected, actual);
         }
 
@@ -62,7 +63,7 @@ namespace Tests.HelperTests
             }.Uri;
 
             var dict = new Dictionary<string, string> { { "entry1++", "value1++" } };
-            var actual = UriHelper.BuildZapUri("host", 42, "uri", dict);
+            var actual = UriHelper.BuildZapUri("host", 42, "uri", Protocols.http, dict);
             Assert.AreEqual(expected, actual);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -66,17 +67,19 @@ namespace NZap.Components
         IApiResult Shutdown(string apikey);
         IApiResult SnapshotSession(string apikey);
 
+
+        /* OTHERS */
+        IReportResponse GetHtmlReport(string apikey);
+        IReportResponse GetXmlReport(string apikey);
         /* TODO:
 Others
 
-htmlreport ()	Generates a report in HTML format
 messageHar (id* )	Gets the message with the given ID in HAR format
 messagesHar (baseurl start count )	Gets the HTTP messages sent through/by ZAP, in HAR format, optionally filtered by URL and paginated with 'start' position and 'count' of messages
 proxy.pac ()	
 rootcert ()	
 sendHarRequest (request* followRedirects )	Sends the first HAR request entry, optionally following redirections. Returns, in HAR format, the request sent and response received and followed redirections, if any.
 setproxy (proxy* )	
-xmlreport ()
     */
     }
 
@@ -98,7 +101,7 @@ xmlreport ()
                 {"id", id.ToString()}
             };
             var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alert");
-            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, parameters);
+            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, _zapClient.Protocol,  parameters);
             var result = _zapClient.GetApiResult(requestUri);
             return SerializationHelper.DeserializeJsonToAlertResult(result);
         }
@@ -112,7 +115,7 @@ xmlreport ()
                 {"count", count.ToString()}
             };
             var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alerts");
-            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, parameters);
+            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, _zapClient.Protocol, parameters);
             var result = _zapClient.GetApiResult(requestUri);
             return SerializationHelper.DeserializeJsonToAlertResultList(result);
         }
@@ -428,6 +431,18 @@ xmlreport ()
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             return _zapClient.CallApi(Component, "action", "snapshotSession", parameters);
+        }
+
+        public IReportResponse GetHtmlReport(string apikey)
+        {
+            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
+            return _zapClient.CallReportApi(Component, "other", "htmlreport", parameters);
+        }
+
+        public IReportResponse GetXmlReport(string apikey)
+        {
+            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
+            return _zapClient.CallReportApi(Component, "other", "xmlreport", parameters);
         }
     }
 }

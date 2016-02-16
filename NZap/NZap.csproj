@@ -65,8 +65,10 @@
     <Compile Include="Entities\ApiResult.cs" />
     <Compile Include="Entities\ApiResultElement.cs" />
     <Compile Include="Entities\ApiResultList.cs" />
+    <Compile Include="Entities\ReportResponse.cs" />
     <Compile Include="Enums\AlertThreshold.cs" />
     <Compile Include="Enums\AuthMethodName.cs" />
+    <Compile Include="Enums\Protocols.cs" />
     <Compile Include="Exceptions\ZapApiException.cs" />
     <Compile Include="Helpers\AlertResultHelper.cs" />
     <Compile Include="Helpers\ApikeyHelper.cs" />

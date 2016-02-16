@@ -10,24 +10,19 @@ namespace Tests.ComponentTests
     public class CoreTests : TestBase
     {
         #region Views
-        //[Test]
-        //public void TestGetAlertsShouldSucceed()
-        //{
-        //    const int expected = 0;
-        //    var apiResult = ZapClient.Core.GetAlerts();
-        //    var actual = apiResult.ResultList.Count;
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [Test]
+        public void TestGetAlertsShouldSucceed()
+        {
+            var apiResult = ZapClient.Core.GetAlerts();
+            Assert.IsNotNull(apiResult);
+        }
 
-        //[Test]
-        //public void TestGetAlertsWithParametersShouldSucceed()
-        //{
-        //    const int expected = 0;
-        //    var parameters = new Dictionary<string, string> { { "baseurl", "localhost" }, { "start", "1" }, { "count", "1" } };
-        //    var apiResult = ZapClient.Core.GetAlerts(parameters);
-        //    var actual = apiResult.ResultList.Count;
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [Test]
+        public void TestGetAlertsWithParametersShouldSucceed()
+        {
+            var apiResult = ZapClient.Core.GetAlerts("localhost", 1, 1);
+            Assert.IsNotNull(apiResult);
+        }
 
         [Test]
         public void TestGetExcludedFromProxyShouldSucceed()
@@ -50,19 +45,17 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetHostsShouldSucceed()
         {
-            const int expected = 0;
             var apiResult = ZapClient.Core.GetHosts();
-            var actual = apiResult.ResultList.Count;
-            Assert.AreEqual(expected, actual);
+            Assert.IsNull(apiResult.Key);
+            Assert.IsNull(apiResult.Value);
         }
 
         [Test]
         public void TestGetMessagesShouldSucceed()
         {
-            const int expected = 0;
             var apiResult = ZapClient.Core.GetMessages();
-            var actual = apiResult.ResultList.Count;
-            Assert.AreEqual(expected, actual);
+            Assert.IsNull(apiResult.Key);
+            Assert.IsNull(apiResult.Value);
         }
 
         [Test]
@@ -259,10 +252,9 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetSitesShouldSucceed()
         {
-            const int expected = 0;
             var apiResult = ZapClient.Core.GetSites();
-            var actual = apiResult.ResultList.Count;
-            Assert.AreEqual(expected, actual);
+            Assert.IsNull(apiResult.Key);
+            Assert.IsNull(apiResult.Value);
         }
 
         [Test]
@@ -287,10 +279,9 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetUrlsShouldSucceed()
         {
-            const int expected = 0;
             var apiResult = ZapClient.Core.GetUrls();
-            var actual = apiResult.ResultList.Count;
-            Assert.AreEqual(expected, actual);
+            Assert.IsNull(apiResult.Key);
+            Assert.IsNull(apiResult.Value);
         }
 
         [Test]
@@ -321,6 +312,18 @@ namespace Tests.ComponentTests
         }
         #endregion
 
+        [Test]
+        public void GetHtmlReportShouldSucceed()
+        {
+            var apiResult = ZapClient.Core.GetHtmlReport(Apikey);
+            Assert.IsNotNull(apiResult.ReportData);
+        }
 
+        [Test]
+        public void GetXmlReportShouldSucceed()
+        {
+            var apiResult = ZapClient.Core.GetXmlReport(Apikey);
+            Assert.IsNotNull(apiResult.ReportData);
+        }
     }
 }

@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NZap.Enums;
 
 namespace NZap.Helpers
 {
     internal class UriHelper
     {
-        private const string Scheme = "http";
-        private const string ResponseType = "JSON";
-
-        internal static string CreateUriStringFromParameters(string component, string type, string action)
+        internal static string CreateUriStringFromParameters(string component, string type, string action, string responseType = "JSON")
         {
             return new StringBuilder()
-                .Append(ResponseType)
+                .Append(responseType)
                 .Append("/")
                 .Append(component)
                 .Append("/")
@@ -23,13 +21,13 @@ namespace NZap.Helpers
                 .ToString();
         }
 
-        internal static Uri BuildZapUri(string host, int port, string uri, IDictionary<string, string> parameters)
+        internal static Uri BuildZapUri(string host, int port, string uri, Protocols scheme, IDictionary<string, string> parameters)
         {
             return new UriBuilder
             {
                 Host = host,
                 Port = port,
-                Scheme = Scheme,
+                Scheme = scheme.ToString(),
                 Path = uri,
                 Query = ParameterHelper.GetParameterStringFromDictionary(parameters)
             }.Uri;

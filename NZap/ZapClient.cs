@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Net;
 using NZap.Components;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap
 {
     public interface IZapClient
     {
-        string Host { get;  }
+        Protocols Protocol { get; }
+        string Host { get; }
         int Port { get; }
         IAcsrfComponent Acsrf { get; }
         IAjaxSpiderComponent AjaxSpider { get; }
@@ -36,10 +38,12 @@ namespace NZap
         IApiResult CallApi(string component, string type, string action);
         IApiResult CallApi(string component, string type, string action, IDictionary<string, string> parameters);
         string GetApiResult(Uri requestUri);
+        IReportResponse CallReportApi(string component, string type, string action, IDictionary<string, string> parameters = null);
     }
 
     public class ZapClient : IZapClient
     {
+        public Protocols Protocol { get; }
         public string Host { get; }
         public int Port { get; }
 
@@ -64,8 +68,13 @@ namespace NZap
         public ISpiderComponent Spider { get; }
         public IUsersComponent Users { get; }
 
-        public ZapClient(string host, int port)
+        public ZapClient(string host, int port) : this(host, port, Protocols.http)
         {
+        }
+
+        public ZapClient(string host, int port, Protocols protocol)
+        {
+            Protocol = protocol;
             Host = host;
             Port = port;
             Acsrf = new AcsrfComponent(this);
@@ -97,7 +106,7 @@ namespace NZap
 
         public IApiResult CallApi(string uri, IDictionary<string, string> parameters)
         {
-            var requestUri = UriHelper.BuildZapUri(Host, Port, uri, parameters);
+            var requestUri = UriHelper.BuildZapUri(Host, Port, uri, Protocol, parameters);
             var result = GetApiResult(requestUri);
             return SerializationHelper.DeserializeJsonToApiResult(result);
         }
@@ -122,6 +131,14 @@ namespace NZap
                 result = webClient.DownloadString(requestUri);
             }
             return result;
+        }
+
+        public IReportResponse CallReportApi(string component, string type, string action, IDictionary<string, string> parameters = null)
+        {
+            var uriString = UriHelper.CreateUriStringFromParameters(component, type, action, "OTHER");
+            var requestUri = UriHelper.BuildZapUri(Host, Port, uriString, Protocol, parameters);
+            var apiResult = GetApiResult(requestUri);
+            return new ReportResponse(apiResult);
         }
     }
 }
