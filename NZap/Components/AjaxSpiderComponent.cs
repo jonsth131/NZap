@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NZap.Entities;
 using NZap.Helpers;
 
@@ -136,18 +137,19 @@ namespace NZap.Components
             return _zapClient.CallApi(Component, "view", "status");
         }
 
-        public IApiResult Scan(string apikey, string url, string inScope = null)
+        public IApiResult Scan(string apikey, string url, string inScope = "")
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("url", url);
-            if (inScope != null) parameters.Add("inScope", inScope);
+            if (string.IsNullOrEmpty(inScope)) inScope = string.Empty;
+            parameters.Add("inScope", inScope);
             return _zapClient.CallApi(Component, "action", "scan", parameters);
         }
 
         public IApiResult SetOptionBrowserId(string apikey, string id)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("id", id);
+            parameters.Add("String", id);
             return _zapClient.CallApi(Component, "action", "setOptionBrowserId", parameters);
         }
 
