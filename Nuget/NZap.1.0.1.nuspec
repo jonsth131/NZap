@@ -10,6 +10,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>.Net API client for OWASP ZAP</description>
         <copyright>2016</copyright>
+		<licenseUrl>https://github.com/jonsth131/NZap/blob/master/LICENSE.md</licenseUrl>
     </metadata>
     <files>
         <file src="..\NZap\bin\release\NZap.dll" target="lib\net45\NZap.dll" />
