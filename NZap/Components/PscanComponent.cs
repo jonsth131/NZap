@@ -19,7 +19,7 @@ namespace NZap.Components
         IApiResult SetScannerAlertThreshold(string apikey, string id, AlertThreshold alertThreshold);
     }
 
-    public class PscanComponent : IPscanComponent
+    internal class PscanComponent : IPscanComponent
     {
         private const string Component = "pscan";
 

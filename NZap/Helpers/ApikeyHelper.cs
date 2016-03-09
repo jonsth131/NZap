@@ -3,7 +3,7 @@ using NZap.Exceptions;
 
 namespace NZap.Helpers
 {
-    public class ApikeyHelper
+    internal class ApikeyHelper
     {
         internal static IDictionary<string, string> ReturnParameterDictFromApikey(string apikey, IDictionary<string, string> parameters = null)
         {

@@ -12,7 +12,7 @@ namespace NZap.Components
         IApiResult RemoveHttpBreakpoint(string apikey, string str, string location, string match, string inverse, bool ignorecase);
     }
 
-    public class BreakComponent : IBreakComponent
+    internal class BreakComponent : IBreakComponent
     {
         private const string Component = "break";
 

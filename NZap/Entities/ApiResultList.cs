@@ -2,14 +2,20 @@
 
 namespace NZap.Entities
 {
-    public class ApiResultList
+    public interface IApiResultList
     {
-        public ICollection<ApiResultElement> ApiResultElements { get; set; }
+        ICollection<IApiResultElement> ApiResultElements { get; set; }
+        string Key { get; set; }
+    }
+
+    internal class ApiResultList : IApiResultList
+    {
+        public ICollection<IApiResultElement> ApiResultElements { get; set; }
         public string Key { get; set; }
 
         public ApiResultList()
         {
-            ApiResultElements = new List<ApiResultElement>();
+            ApiResultElements = new List<IApiResultElement>();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace NZap.Components
         IApiResult SetBasicAuthorizationDetectionMethod(string apikey, string contextId, IDictionary<string, string> parameters = null);
     }
 
-    public class AuthorizationComponent : IAuthorizationComponent
+    internal class AuthorizationComponent : IAuthorizationComponent
     {
         private const string Component = "authorization";
 

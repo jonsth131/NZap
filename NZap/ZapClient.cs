@@ -135,7 +135,7 @@ namespace NZap
 
         public IReportResponse CallReportApi(string component, string type, string action, IDictionary<string, string> parameters = null)
         {
-            var uriString = UriHelper.CreateUriStringFromParameters(component, type, action, "OTHER");
+            var uriString = UriHelper.CreateUriStringFromParameters(component, type, action, ResponseType.OTHER);
             var requestUri = UriHelper.BuildZapUri(Host, Port, uriString, Protocol, parameters);
             var apiResult = GetApiResult(requestUri);
             return new ReportResponse(apiResult);

@@ -20,7 +20,7 @@ namespace NZap.Components
         IApiResult SetUserName(string apikey, string contextId, string userId, string name);
     }
 
-    public class UsersComponent : IUsersComponent
+    internal class UsersComponent : IUsersComponent
     {
         private const string Component = "users";
 

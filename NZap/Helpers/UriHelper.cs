@@ -7,7 +7,7 @@ namespace NZap.Helpers
 {
     internal class UriHelper
     {
-        internal static string CreateUriStringFromParameters(string component, string type, string action, string responseType = "JSON")
+        internal static string CreateUriStringFromParameters(string component, string type, string action, ResponseType responseType = ResponseType.JSON)
         {
             return new StringBuilder()
                 .Append(responseType)

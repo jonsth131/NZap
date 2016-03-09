@@ -78,7 +78,7 @@ namespace NZap.Components
         IApiResult StopAllScans(string apikey);
     }
 
-    public class AscanComponent : IAscanComponent
+    internal class AscanComponent : IAscanComponent
     {
         private const string Component = "ascan";
 

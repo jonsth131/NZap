@@ -41,7 +41,7 @@ namespace NZap.Components
         IApiResult Stop(string apikey);
     }
 
-    public class AjaxSpiderComponent : IAjaxSpiderComponent
+    internal class AjaxSpiderComponent : IAjaxSpiderComponent
     {
         private const string Component = "ajaxSpider";
 

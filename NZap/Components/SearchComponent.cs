@@ -25,7 +25,7 @@ namespace NZap.Components
         */
     }
 
-    public class SearchComponent : ISearchComponent
+    internal class SearchComponent : ISearchComponent
     {
         private const string Component = "search";
 

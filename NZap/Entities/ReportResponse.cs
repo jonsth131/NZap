@@ -5,7 +5,7 @@
         string ReportData { get; }
     }
 
-    public class ReportResponse : IReportResponse
+    internal struct ReportResponse : IReportResponse
     {
         public string ReportData { get; }
 

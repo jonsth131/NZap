@@ -13,7 +13,7 @@ namespace NZap.Components
         IApiResult RemoveOptionToken(string apikey, string name);
     }
 
-    public class AcsrfComponent : IAcsrfComponent
+    internal class AcsrfComponent : IAcsrfComponent
     {
         private const string Component = "acsrf";
 

@@ -15,7 +15,7 @@ namespace NZap.Components
         IApiResult SetSessionManagementMethod(string apikey, string contextId, string methodName, string methodConfigParams = null);
     }
 
-    public class SessionManagementComponent : ISessionManagementComponent
+    internal class SessionManagementComponent : ISessionManagementComponent
     {
         private const string Component = "sessionManagement";
 

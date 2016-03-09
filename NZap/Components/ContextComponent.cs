@@ -29,7 +29,7 @@ namespace NZap.Components
         IApiResult SetContextInScope(string apikey, string contextName, bool inScope);
     }
 
-    public class ContextComponent : IContextComponent
+    internal class ContextComponent : IContextComponent
     {
         private const string Component = "context";
 

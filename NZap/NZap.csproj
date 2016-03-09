@@ -69,6 +69,7 @@
     <Compile Include="Enums\AlertThreshold.cs" />
     <Compile Include="Enums\AuthMethodName.cs" />
     <Compile Include="Enums\Protocols.cs" />
+    <Compile Include="Enums\ResponseType.cs" />
     <Compile Include="Exceptions\ZapApiException.cs" />
     <Compile Include="Helpers\AlertResultHelper.cs" />
     <Compile Include="Helpers\ApikeyHelper.cs" />

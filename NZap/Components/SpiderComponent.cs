@@ -64,7 +64,7 @@ namespace NZap.Components
         IApiResult StopAllScans(string apikey);
     }
 
-    public class SpiderComponent : ISpiderComponent
+    internal class SpiderComponent : ISpiderComponent
     {
         private const string Component = "spider";
 

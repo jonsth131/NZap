@@ -20,7 +20,7 @@ namespace NZap.Components
         IApiResult SetLoggedOutIndicator(string apikey, string contextId, string loggedOutIndicatorRegex);
     }
 
-    public class AuthenticationComponent : IAuthenticationComponent
+    internal class AuthenticationComponent : IAuthenticationComponent
     {
         private const string Component = "authentication";
 

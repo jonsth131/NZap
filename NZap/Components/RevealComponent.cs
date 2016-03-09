@@ -12,7 +12,7 @@ namespace NZap.Components
         IApiResult SetReveal(string apikey, bool reveal);
     }
 
-    public class RevealComponent : IRevealComponent
+    internal class RevealComponent : IRevealComponent
     {
         private const string Component = "reveal";
 

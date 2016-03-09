@@ -34,7 +34,7 @@ namespace NZap.Components
         IApiResult SetOptionReportReleaseAddons(string apikey, bool option);
     }
 
-    public class AutoupdateComponent : IAutoupdateComponent
+    internal class AutoupdateComponent : IAutoupdateComponent
     {
         private const string Component = "autoupdate";
 

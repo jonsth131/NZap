@@ -83,7 +83,7 @@ setproxy (proxy* )
     */
     }
 
-    public class CoreComponent : ICoreComponent
+    internal class CoreComponent : ICoreComponent
     {
         private const string Component = "core";
 

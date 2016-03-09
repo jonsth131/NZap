@@ -19,7 +19,7 @@ namespace NZap.Components
         IApiResult RunStandAloneScript(string apikey, string scriptName);
     }
 
-    public class ScriptComponent : IScriptComponent
+    internal class ScriptComponent : IScriptComponent
     {
         private const string Component = "script";
 

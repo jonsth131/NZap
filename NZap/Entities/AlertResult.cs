@@ -22,7 +22,7 @@ namespace NZap.Entities
         void AddResult(string key, string value);
     }
 
-    public class AlertResult : IAlertResult
+    internal class AlertResult : IAlertResult
     {
         private readonly Dictionary<string, string> _results;
 

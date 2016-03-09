@@ -22,7 +22,7 @@ namespace NZap.Components
         IApiResult UnsetActiveSession(string apikey, string site);
     }
 
-    public class HttpSessionsComponent : IHttpSessionsComponent
+    internal class HttpSessionsComponent : IHttpSessionsComponent
     {
         private const string Component = "httpSessions";
 

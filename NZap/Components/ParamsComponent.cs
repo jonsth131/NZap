@@ -9,7 +9,7 @@ namespace NZap.Components
         IApiResult GetParams(string site = null);
     }
 
-    public class ParamsComponent : IParamsComponent
+    internal class ParamsComponent : IParamsComponent
     {
         private const string Component = "params";
 

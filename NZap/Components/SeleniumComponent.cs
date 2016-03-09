@@ -16,7 +16,7 @@ namespace NZap.Components
         IApiResult SetOptionPhantomJsBinaryPath(string apikey, string path);
     }
 
-    public class SeleniumComponent : ISeleniumComponent
+    internal class SeleniumComponent : ISeleniumComponent
     {
         private const string Component = "selenium";
 

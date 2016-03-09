@@ -18,6 +18,38 @@ namespace Tests.HelperTests
         }
 
         [Test]
+        public void CreateUriStringFromParametersWithJsonpTypeShouldSucceed()
+        {
+            const string expected = "JSONP/component/type/action/";
+            var actual = UriHelper.CreateUriStringFromParameters("component", "type", "action", ResponseType.JSONP);
+            StringAssert.IsMatch(expected, actual);
+        }
+
+        [Test]
+        public void CreateUriStringFromParametersWithHtmlTypeShouldSucceed()
+        {
+            const string expected = "HTML/component/type/action/";
+            var actual = UriHelper.CreateUriStringFromParameters("component", "type", "action", ResponseType.HTML);
+            StringAssert.IsMatch(expected, actual);
+        }
+
+        [Test]
+        public void CreateUriStringFromParametersWithXmlTypeShouldSucceed()
+        {
+            const string expected = "XML/component/type/action/";
+            var actual = UriHelper.CreateUriStringFromParameters("component", "type", "action", ResponseType.XML);
+            StringAssert.IsMatch(expected, actual);
+        }
+
+        [Test]
+        public void CreateUriStringFromParametersWithOtherTypeShouldSucceed()
+        {
+            const string expected = "OTHER/component/type/action/";
+            var actual = UriHelper.CreateUriStringFromParameters("component", "type", "action", ResponseType.OTHER);
+            StringAssert.IsMatch(expected, actual);
+        }
+
+        [Test]
         public void BuildZapUriWithNullParametersShouldSucceed()
         {
             var expected = new UriBuilder

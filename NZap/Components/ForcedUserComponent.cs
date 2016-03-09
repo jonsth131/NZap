@@ -15,7 +15,7 @@ namespace NZap.Components
         IApiResult SetForcedUserModeEnabled(string apikey, bool option);
     }
 
-    public class ForcedUserComponent : IForcedUserComponent
+    internal class ForcedUserComponent : IForcedUserComponent
     {
         private const string Component = "forcedUser";
 
