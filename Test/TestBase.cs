@@ -13,7 +13,7 @@ namespace Tests
 
         public TestBase()
         {
-            ZapClient = new ZapClient("localhost", 8080);
+            ZapClient = new ZapClient("localhost", 8081);
         }
 
         #region Helper methods
