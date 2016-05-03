@@ -4,7 +4,7 @@ using NZap.Entities;
 
 namespace NZap.Helpers
 {
-    internal class SerializationHelper
+    internal static class SerializationHelper
     {
         internal static IApiResult DeserializeJsonToApiResult(string json)
         {

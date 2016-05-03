@@ -42,30 +42,12 @@ namespace NZap.Components
 
         public IApiResult Disable(string apikey, string scriptName)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("scriptName", scriptName);
-            try
-            {
-                return _zapClient.CallApi(Component, "action", "disable", parameters);
-            }
-            catch (Exception)
-            {
-                throw new ZapApiException($"No script with name: {scriptName}");
-            }
+            return SetScriptStatus(apikey, scriptName, "disable");
         }
 
         public IApiResult Enable(string apikey, string scriptName)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("scriptName", scriptName);
-            try
-            {
-                return _zapClient.CallApi(Component, "action", "enable", parameters);
-            }
-            catch (Exception)
-            {
-                throw new ZapApiException($"No script with name: {scriptName}");
-            }
+            return SetScriptStatus(apikey, scriptName, "enable");
         }
 
         public IApiResult Load(string apikey, string scriptName, string scriptType, string scriptEngine, string fileName,
@@ -108,6 +90,20 @@ namespace NZap.Components
             try
             {
                 return _zapClient.CallApi(Component, "action", "runStandAloneScript", parameters);
+            }
+            catch (Exception)
+            {
+                throw new ZapApiException($"No script with name: {scriptName}");
+            }
+        }
+
+        private IApiResult SetScriptStatus(string apikey, string scriptName, string action)
+        {
+            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
+            parameters.Add("scriptName", scriptName);
+            try
+            {
+                return _zapClient.CallApi(Component, "action", action, parameters);
             }
             catch (Exception)
             {

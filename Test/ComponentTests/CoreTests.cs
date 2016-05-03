@@ -262,7 +262,7 @@ namespace Tests.ComponentTests
         {
             const int expected = 0;
             var apiResult = ZapClient.Core.GetStats();
-            var actual = apiResult.ResultList.Count();
+            var actual = apiResult.ResultList.Count;
             Assert.AreEqual(expected, actual);
         }
 
@@ -272,7 +272,7 @@ namespace Tests.ComponentTests
             const int expected = 0;
             var parameters = new Dictionary<string, string> { { "keyPrefix", "1" } };
             var apiResult = ZapClient.Core.GetNumberOfMessages(parameters);
-            var actual = apiResult.ResultList.Count();
+            var actual = apiResult.ResultList.Count;
             Assert.AreEqual(expected, actual);
         }
 

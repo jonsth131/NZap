@@ -35,13 +35,7 @@ namespace NZap.Components
         /// <returns>Result of the action</returns>
         public IApiResult AddHttpBreakpoint(string apikey, string str, string location, string match, string inverse, bool ignorecase)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("string", str);
-            parameters.Add("location", location);
-            parameters.Add("match", match);
-            parameters.Add("inverse", inverse);
-            parameters.Add("ignorecase", ignorecase.ToString());
-            return _zapClient.CallApi(Component, "action", "addHttpBreakpoint", parameters);
+            return HttpBreakpoint(apikey, str, location, match, inverse, ignorecase, "addHttpBreakpoint");
         }
 
         /// <summary>
@@ -71,8 +65,12 @@ namespace NZap.Components
         /// <param name="inverse">Inverse</param>
         /// <param name="ignorecase">Ignore case</param>
         /// <returns>Result of the action</returns>
-        public IApiResult RemoveHttpBreakpoint(string apikey, string str, string location, string match, string inverse,
-            bool ignorecase)
+        public IApiResult RemoveHttpBreakpoint(string apikey, string str, string location, string match, string inverse, bool ignorecase)
+        {
+            return HttpBreakpoint(apikey, str, location, match, inverse, ignorecase, "removeHttpBreakpoint");
+        }
+
+        private IApiResult HttpBreakpoint(string apikey, string str, string location, string match, string inverse, bool ignorecase, string action)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("string", str);
@@ -80,7 +78,7 @@ namespace NZap.Components
             parameters.Add("match", match);
             parameters.Add("inverse", inverse);
             parameters.Add("ignorecase", ignorecase.ToString());
-            return _zapClient.CallApi(Component, "action", "removeHttpBreakpoint", parameters);
+            return _zapClient.CallApi(Component, "action", action, parameters);
         }
     }
 }

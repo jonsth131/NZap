@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
-using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -100,9 +99,7 @@ setproxy (proxy* )
             {
                 {"id", id.ToString()}
             };
-            var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alert");
-            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, _zapClient.Protocol,  parameters);
-            var result = _zapClient.GetApiResult(requestUri);
+            var result = GetAlertApiResult("alert", parameters);
             return SerializationHelper.DeserializeJsonToAlertResult(result);
         }
 
@@ -114,9 +111,7 @@ setproxy (proxy* )
                 {"start", start.ToString()},
                 {"count", count.ToString()}
             };
-            var uri = UriHelper.CreateUriStringFromParameters("core", "view", "alerts");
-            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, _zapClient.Protocol, parameters);
-            var result = _zapClient.GetApiResult(requestUri);
+            var result = GetAlertApiResult("alerts", parameters);
             return SerializationHelper.DeserializeJsonToAlertResultList(result);
         }
 
@@ -332,93 +327,67 @@ setproxy (proxy* )
 
         public IApiResult SetOptionDefaultUserAgent(string apikey, string defaultUserAgent)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", defaultUserAgent);
-            return _zapClient.CallApi(Component, "action", "setOptionDefaultUserAgent", parameters);
+            return ActionWithParameterString(apikey, defaultUserAgent, "setOptionDefaultUserAgent");
         }
 
         public IApiResult SetOptionHttpStateEnabled(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionHttpStateEnabled", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionHttpStateEnabled");
         }
 
         public IApiResult SetOptionProxyChainName(string apikey, string proxyChainName)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", proxyChainName);
-            return _zapClient.CallApi(Component, "action", "setOptionProxyChainName", parameters);
+            return ActionWithParameterString(apikey, proxyChainName, "setOptionProxyChainName");
         }
 
         public IApiResult SetOptionProxyChainPassword(string apikey, string proxyChainPassword)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", proxyChainPassword);
-            return _zapClient.CallApi(Component, "action", "setOptionProxyChainPassword", parameters);
+            return ActionWithParameterString(apikey, proxyChainPassword, "setOptionProxyChainPassword");
         }
 
         public IApiResult SetOptionProxyChainPort(string apikey, int port)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Integer", port.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionProxyChainPort", parameters);
+            return ActionWithParameterInteger(apikey, port, "setOptionProxyChainPort");
         }
 
         public IApiResult SetOptionProxyChainPrompt(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionProxyChainPrompt", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionProxyChainPrompt");
         }
 
         public IApiResult SetOptionProxyChainRealm(string apikey, string proxyChainRealm)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", proxyChainRealm);
-            return _zapClient.CallApi(Component, "action", "setOptionProxyChainRealm", parameters);
+            return ActionWithParameterString(apikey, proxyChainRealm, "setOptionProxyChainRealm");
         }
 
         public IApiResult SetOptionProxyChainSkipName(string apikey, string proxyChainSkipName)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", proxyChainSkipName);
-            return _zapClient.CallApi(Component, "action", "setOptionProxyChainSkipName", parameters);
+            return ActionWithParameterString(apikey, proxyChainSkipName, "setOptionProxyChainSkipName");
         }
 
         public IApiResult SetOptionProxyChainUserName(string apikey, string proxyChainUserName)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", proxyChainUserName);
-            return _zapClient.CallApi(Component, "action", "setOptionProxyChainUserName", parameters);
+            return ActionWithParameterString(apikey, proxyChainUserName, "setOptionProxyChainUserName");
         }
 
         public IApiResult SetOptionSingleCookieRequestHeader(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionSingleCookieRequestHeader", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionSingleCookieRequestHeader");
         }
 
         public IApiResult SetOptionTimeoutInSecs(string apikey, int secs)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Integer", secs.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionTimeoutInSecs", parameters);
+            return ActionWithParameterInteger(apikey, secs, "setOptionTimeoutInSecs");
         }
 
         public IApiResult SetOptionUseProxyChain(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionUseProxyChain", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionUseProxyChain");
         }
 
         public IApiResult SetOptionUseProxyChainAuth(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionUseProxyChainAuth", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionUseProxyChainAuth");
         }
 
         public IApiResult Shutdown(string apikey)
@@ -443,6 +412,35 @@ setproxy (proxy* )
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             return _zapClient.CallReportApi(Component, "other", "xmlreport", parameters);
+        }
+
+        private string GetAlertApiResult(string action, Dictionary<string, string> parameters)
+        {
+            var uri = UriHelper.CreateUriStringFromParameters("core", "view", action);
+            var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, _zapClient.Protocol, parameters);
+            var result = _zapClient.GetApiResult(requestUri);
+            return result;
+        }
+
+        private IApiResult ActionWithParameterString(string apikey, string s, string action)
+        {
+            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
+            parameters.Add("String", s);
+            return _zapClient.CallApi(Component, "action", action, parameters);
+        }
+
+        private IApiResult ActionWithParameterBoolean(string apikey, bool option, string action)
+        {
+            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
+            parameters.Add("Boolean", option.ToString());
+            return _zapClient.CallApi(Component, "action", action, parameters);
+        }
+
+        private IApiResult ActionWithParameterInteger(string apikey, int n, string action)
+        {
+            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
+            parameters.Add("Integer", n.ToString());
+            return _zapClient.CallApi(Component, "action", action, parameters);
         }
     }
 }

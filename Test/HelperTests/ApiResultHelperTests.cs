@@ -38,7 +38,7 @@ namespace Tests.HelperTests
             list[7] = new Dictionary<string, object> { { "key8", "value8" } };
             list[8] = new Dictionary<string, object> { { "key9", "value9" } };
             list[9] = new Dictionary<string, object> { { "key10", "value10" } };
-            return new Dictionary<string, object> { { "test", list } }; ;
+            return new Dictionary<string, object> { { "test", list } };
         }
     }
 }

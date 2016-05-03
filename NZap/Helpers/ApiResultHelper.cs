@@ -5,7 +5,7 @@ using NZap.Entities;
 
 namespace NZap.Helpers
 {
-    internal class ApiResultHelper
+    internal static class ApiResultHelper
     {
         internal static IApiResult CreateApiResult(IDictionary<string, object> dict)
         {

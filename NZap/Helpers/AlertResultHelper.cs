@@ -4,7 +4,7 @@ using NZap.Entities;
 
 namespace NZap.Helpers
 {
-    internal class AlertResultHelper
+    internal static class AlertResultHelper
     {
         internal static IAlertResult CreateAlertResult(IDictionary<string, object> dict)
         {

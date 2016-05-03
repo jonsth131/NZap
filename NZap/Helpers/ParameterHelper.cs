@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NZap.Helpers
 {
-    internal class ParameterHelper
+    internal static class ParameterHelper
     {
         internal static string GetParameterStringFromDictionary(IDictionary<string, string> parameters)
         {

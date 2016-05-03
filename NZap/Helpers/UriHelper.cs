@@ -5,7 +5,7 @@ using NZap.Enums;
 
 namespace NZap.Helpers
 {
-    internal class UriHelper
+    internal static class UriHelper
     {
         internal static string CreateUriStringFromParameters(string component, string type, string action, ResponseType responseType = ResponseType.JSON)
         {

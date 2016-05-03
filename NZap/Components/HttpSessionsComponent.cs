@@ -54,10 +54,7 @@ namespace NZap.Components
 
         public IApiResult AddSessionToken(string apikey, string site, string sessionToken)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("site", site);
-            parameters.Add("sessionToken", sessionToken);
-            return _zapClient.CallApi(Component, "action", "addSessionToken", parameters);
+            return SetSessionToken(apikey, site, sessionToken, "addSessionToken");
         }
 
         public IApiResult CreateEmptySession(string apikey, string site, string session = null)
@@ -70,18 +67,12 @@ namespace NZap.Components
 
         public IApiResult RemoveSession(string apikey, string site, string session)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("site", site);
-            parameters.Add("session", session);
-            return _zapClient.CallApi(Component, "action", "removeSession", parameters);
+            return SetSession(apikey, site, session, "removeSession");
         }
 
         public IApiResult RemoveSessionToken(string apikey, string site, string sessionToken)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("site", site);
-            parameters.Add("sessionToken", sessionToken);
-            return _zapClient.CallApi(Component, "action", "removeSessionToken", parameters);
+            return SetSessionToken(apikey, site, sessionToken, "removeSessionToken");
         }
 
         public IApiResult RenameSession(string apikey, string site, string oldSessionName, string newSessionName)
@@ -95,10 +86,7 @@ namespace NZap.Components
 
         public IApiResult SetActiveSession(string apikey, string site, string session)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("site", site);
-            parameters.Add("session", session);
-            return _zapClient.CallApi(Component, "action", "setActiveSession", parameters);
+            return SetSession(apikey, site, session, "setActiveSession");
         }
 
         public IApiResult SetSessionTokenValue(string apikey, string session, string sessionToken, string tokenValue)
@@ -115,6 +103,22 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("site", site);
             return _zapClient.CallApi(Component, "action", "unsetActiveSession", parameters);
+        }
+
+        private IApiResult SetSessionToken(string apikey, string site, string sessionToken, string action)
+        {
+            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
+            parameters.Add("site", site);
+            parameters.Add("sessionToken", sessionToken);
+            return _zapClient.CallApi(Component, "action", action, parameters);
+        }
+
+        private IApiResult SetSession(string apikey, string site, string session, string action)
+        {
+            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
+            parameters.Add("site", site);
+            parameters.Add("session", session);
+            return _zapClient.CallApi(Component, "action", action, parameters);
         }
     }
 }

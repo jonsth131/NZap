@@ -128,58 +128,49 @@ namespace NZap.Components
 
         public IApiResult SetOptionCheckAddonUpdates(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionCheckAddonUpdates", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionCheckAddonUpdates");
         }
 
         public IApiResult SetOptionCheckOnStart(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionCheckOnStart", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionCheckOnStart");
         }
 
         public IApiResult SetOptionDownloadNewRelease(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionDownloadNewRelease", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionDownloadNewRelease");
         }
 
         public IApiResult SetOptionInstallAddonUpdates(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionInstallAddonUpdates", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionInstallAddonUpdates");
         }
 
         public IApiResult SetOptionInstallScannerRules(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionInstallScannerRules", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionInstallScannerRules");
         }
 
         public IApiResult SetOptionReportAlphaAddons(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionReportAlphaAddons", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionReportAlphaAddons");
         }
 
         public IApiResult SetOptionReportBetaAddons(string apikey, bool option)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionReportBetaAddons", parameters);
+            return ActionWithParameterBoolean(apikey, option, "setOptionReportBetaAddons");
         }
 
         public IApiResult SetOptionReportReleaseAddons(string apikey, bool option)
         {
+            return ActionWithParameterBoolean(apikey, option, "setOptionReportReleaseAddons");
+        }
+
+        private IApiResult ActionWithParameterBoolean(string apikey, bool option, string action)
+        {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", "setOptionReportReleaseAddons", parameters);
+            return _zapClient.CallApi(Component, "action", action, parameters);
         }
     }
 }
