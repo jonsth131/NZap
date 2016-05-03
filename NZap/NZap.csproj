@@ -48,6 +48,7 @@
     <Compile Include="Components\AuthorizationComponent.cs" />
     <Compile Include="Components\AutoupdateComponent.cs" />
     <Compile Include="Components\BreakComponent.cs" />
+    <Compile Include="Components\CommonActions.cs" />
     <Compile Include="Components\ContextComponent.cs" />
     <Compile Include="Components\CoreComponent.cs" />
     <Compile Include="Components\ForcedUserComponent.cs" />

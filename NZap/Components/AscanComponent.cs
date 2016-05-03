@@ -83,10 +83,12 @@ namespace NZap.Components
         private const string Component = "ascan";
 
         private readonly IZapClient _zapClient;
+        private readonly CommonActions _commonActions;
 
         public AscanComponent(IZapClient zapClient)
         {
             _zapClient = zapClient;
+            _commonActions = new CommonActions(zapClient, Component);
         }
 
         public IApiResult GetAlertsIds(string scanId)
@@ -246,9 +248,7 @@ namespace NZap.Components
 
         public IApiResult DisableAllScanners(string apikey, string scanPolicyName = null)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            if (scanPolicyName != null) parameters.Add("scanPolicyName", scanPolicyName);
-            return _zapClient.CallApi(Component, "action", "disableAllScanners", parameters);
+            return SetAllScanners(apikey, scanPolicyName, "disableAllScanners");
         }
 
         public IApiResult DisableScanners(string apikey, string ids)
@@ -258,9 +258,7 @@ namespace NZap.Components
 
         public IApiResult EnableAllScanners(string apikey, string scanPolicyName = null)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            if (scanPolicyName != null) parameters.Add("scanPolicyName", scanPolicyName);
-            return _zapClient.CallApi(Component, "action", "enableAllScanners", parameters);
+            return SetAllScanners(apikey, scanPolicyName, "enableAllScanners");
         }
 
         public IApiResult EnableScanners(string apikey, string ids)
@@ -346,82 +344,82 @@ namespace NZap.Components
 
         public IApiResult SetOptionAllowAttackOnStart(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionAllowAttackOnStart");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionAllowAttackOnStart");
         }
 
         public IApiResult SetOptionAttackPolicy(string apikey, string policy)
         {
-            return ActionWithParameterString(apikey, policy, "setOptionAttackPolicy");
+            return _commonActions.ActionWithParameterString(apikey, policy, "setOptionAttackPolicy");
         }
 
         public IApiResult SetOptionDefaultPolicy(string apikey, string policy)
         {
-            return ActionWithParameterString(apikey, policy, "setOptionDefaultPolicy");
+            return _commonActions.ActionWithParameterString(apikey, policy, "setOptionDefaultPolicy");
         }
 
         public IApiResult SetOptionDelayInMs(string apikey, int delay)
         {
-            return ActionWithParameterInteger(apikey, delay, "setOptionDelayInMs");
+            return _commonActions.ActionWithParameterInteger(apikey, delay, "setOptionDelayInMs");
         }
 
         public IApiResult SetOptionHandleAntiCsrfTokens(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionHandleAntiCSRFTokens");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionHandleAntiCSRFTokens");
         }
 
         public IApiResult SetOptionHostPerScan(string apikey, int hostPerScan)
         {
-            return ActionWithParameterInteger(apikey, hostPerScan, "setOptionHostPerScan");
+            return _commonActions.ActionWithParameterInteger(apikey, hostPerScan, "setOptionHostPerScan");
         }
 
         public IApiResult SetOptionInjectPluginIdInHeader(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionInjectPluginIdInHeader");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionInjectPluginIdInHeader");
         }
 
         public IApiResult SetOptionMaxChartTimeInMins(string apikey, int mins)
         {
-            return ActionWithParameterInteger(apikey, mins, "setOptionMaxChartTimeInMins");
+            return _commonActions.ActionWithParameterInteger(apikey, mins, "setOptionMaxChartTimeInMins");
         }
 
         public IApiResult SetOptionMaxScansInUi(string apikey, int maxScans)
         {
-            return ActionWithParameterInteger(apikey, maxScans, "setOptionMaxScansInUI");
+            return _commonActions.ActionWithParameterInteger(apikey, maxScans, "setOptionMaxScansInUI");
         }
 
         public IApiResult SetOptionPromptInAttackMode(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionPromptInAttackMode");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionPromptInAttackMode");
         }
 
         public IApiResult SetOptionPromptToClearFinishedScans(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionPromptToClearFinishedScans");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionPromptToClearFinishedScans");
         }
 
         public IApiResult SetOptionRescanInAttackMode(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionRescanInAttackMode");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionRescanInAttackMode");
         }
 
         public IApiResult SetOptionShowAdvancedDialog(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionShowAdvancedDialog");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionShowAdvancedDialog");
         }
 
         public IApiResult SetOptionTargetParamsEnabledRpc(string apikey, int paramsEnabled)
         {
-            return ActionWithParameterInteger(apikey, paramsEnabled, "setOptionTargetParamsEnabledRPC");
+            return _commonActions.ActionWithParameterInteger(apikey, paramsEnabled, "setOptionTargetParamsEnabledRPC");
         }
 
         public IApiResult SetOptionTargetParamsInjectable(string apikey, int paramsInjectable)
         {
-            return ActionWithParameterInteger(apikey, paramsInjectable, "setOptionTargetParamsInjectable");
+            return _commonActions.ActionWithParameterInteger(apikey, paramsInjectable, "setOptionTargetParamsInjectable");
         }
 
         public IApiResult SetOptionThreadPerHost(string apikey, int optionThreadPerHost)
         {
-            return ActionWithParameterInteger(apikey, optionThreadPerHost, "setOptionThreadPerHost");
+            return _commonActions.ActionWithParameterInteger(apikey, optionThreadPerHost, "setOptionThreadPerHost");
         }
 
         public IApiResult SetPolicyAlertThreshold(string apikey, string id, string alertThreshold, string scanPolicyName = null)
@@ -489,25 +487,12 @@ namespace NZap.Components
             return _zapClient.CallApi(Component, "action", action, parameters);
         }
 
-        private IApiResult ActionWithParameterBoolean(string apikey, bool option, string action)
+        private IApiResult SetAllScanners(string apikey, string scanPolicyName, string action)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
+            if (scanPolicyName != null) parameters.Add("scanPolicyName", scanPolicyName);
             return _zapClient.CallApi(Component, "action", action, parameters);
         }
 
-        private IApiResult ActionWithParameterString(string apikey, string s, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", s);
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
-
-        private IApiResult ActionWithParameterInteger(string apikey, int n, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Integer", n.ToString());
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
     }
 }

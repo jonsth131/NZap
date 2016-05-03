@@ -50,8 +50,7 @@ namespace NZap.Components
             return SetScriptStatus(apikey, scriptName, "enable");
         }
 
-        public IApiResult Load(string apikey, string scriptName, string scriptType, string scriptEngine, string fileName,
-            string scriptDescription = null)
+        public IApiResult Load(string apikey, string scriptName, string scriptType, string scriptEngine, string fileName, string scriptDescription = null)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("scriptName", scriptName);
@@ -71,30 +70,12 @@ namespace NZap.Components
 
         public IApiResult Remove(string apikey, string scriptName)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("scriptName", scriptName);
-            try
-            {
-                return _zapClient.CallApi(Component, "action", "remove", parameters);
-            }
-            catch (Exception)
-            {
-                throw new ZapApiException($"No script with name: {scriptName}");
-            }
+            return SetScriptStatus(apikey, scriptName, "remove");
         }
 
         public IApiResult RunStandAloneScript(string apikey, string scriptName)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("scriptName", scriptName);
-            try
-            {
-                return _zapClient.CallApi(Component, "action", "runStandAloneScript", parameters);
-            }
-            catch (Exception)
-            {
-                throw new ZapApiException($"No script with name: {scriptName}");
-            }
+            return SetScriptStatus(apikey, scriptName, "runStandAloneScript");
         }
 
         private IApiResult SetScriptStatus(string apikey, string scriptName, string action)

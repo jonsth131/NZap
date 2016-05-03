@@ -45,10 +45,12 @@ namespace NZap.Components
         private const string Component = "ajaxSpider";
 
         private readonly IZapClient _zapClient;
+        private readonly CommonActions _commonActions;
 
         public AjaxSpiderComponent(IZapClient zapClient)
         {
             _zapClient = zapClient;
+            _commonActions = new CommonActions(zapClient, Component);
         }
 
         public IApiResult GetNumberOfResults()
@@ -147,52 +149,52 @@ namespace NZap.Components
 
         public IApiResult SetOptionBrowserId(string apikey, string id)
         {
-            return ActionWithParameterString(apikey, id, "setOptionBrowserId");
+            return _commonActions.ActionWithParameterString(apikey, id, "setOptionBrowserId");
         }
 
         public IApiResult SetOptionClickDefaultElems(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionClickDefaultElems");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionClickDefaultElems");
         }
 
         public IApiResult SetOptionClickElemsOnce(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionClickElemsOnce");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionClickElemsOnce");
         }
 
         public IApiResult SetOptionEventWait(string apikey, int wait)
         {
-            return ActionWithParameterInteger(apikey, wait, "setOptionEventWait");
+            return _commonActions.ActionWithParameterInteger(apikey, wait, "setOptionEventWait");
         }
 
         public IApiResult SetOptionMaxCrawlDepth(string apikey, int depth)
         {
-            return ActionWithParameterInteger(apikey, depth, "setOptionMaxCrawlDepth");
+            return _commonActions.ActionWithParameterInteger(apikey, depth, "setOptionMaxCrawlDepth");
         }
 
         public IApiResult SetOptionMaxCrawlStates(string apikey, int states)
         {
-            return ActionWithParameterInteger(apikey, states, "setOptionMaxCrawlStates");
+            return _commonActions.ActionWithParameterInteger(apikey, states, "setOptionMaxCrawlStates");
         }
 
         public IApiResult SetOptionMaxDuration(string apikey, int duration)
         {
-            return ActionWithParameterInteger(apikey, duration, "setOptionMaxDuration");
+            return _commonActions.ActionWithParameterInteger(apikey, duration, "setOptionMaxDuration");
         }
 
         public IApiResult SetOptionNumberOfBrowsers(string apikey, int numberOfBrowsers)
         {
-            return ActionWithParameterInteger(apikey, numberOfBrowsers, "setOptionNumberOfBrowsers");
+            return _commonActions.ActionWithParameterInteger(apikey, numberOfBrowsers, "setOptionNumberOfBrowsers");
         }
 
         public IApiResult SetOptionRandomInputs(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionRandomInputs");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionRandomInputs");
         }
 
         public IApiResult SetOptionReloadWait(string apikey, int wait)
         {
-            return ActionWithParameterInteger(apikey, wait, "setOptionReloadWait");
+            return _commonActions.ActionWithParameterInteger(apikey, wait, "setOptionReloadWait");
         }
 
         public IApiResult Stop(string apikey)
@@ -200,27 +202,5 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             return _zapClient.CallApi(Component, "action", "stop", parameters);
         }
-
-        private IApiResult ActionWithParameterBoolean(string apikey, bool option, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
-
-        private IApiResult ActionWithParameterString(string apikey, string s, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", s);
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
-
-        private IApiResult ActionWithParameterInteger(string apikey, int n, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Integer", n.ToString());
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
-
     }
 }

@@ -87,10 +87,12 @@ setproxy (proxy* )
         private const string Component = "core";
 
         private readonly IZapClient _zapClient;
+        private readonly CommonActions _commonActions;
 
         public CoreComponent(IZapClient zapClient)
         {
             _zapClient = zapClient;
+            _commonActions = new CommonActions(zapClient, Component);
         }
 
         public IAlertResult GetAlert(int id)
@@ -327,67 +329,67 @@ setproxy (proxy* )
 
         public IApiResult SetOptionDefaultUserAgent(string apikey, string defaultUserAgent)
         {
-            return ActionWithParameterString(apikey, defaultUserAgent, "setOptionDefaultUserAgent");
+            return _commonActions.ActionWithParameterString(apikey, defaultUserAgent, "setOptionDefaultUserAgent");
         }
 
         public IApiResult SetOptionHttpStateEnabled(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionHttpStateEnabled");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionHttpStateEnabled");
         }
 
         public IApiResult SetOptionProxyChainName(string apikey, string proxyChainName)
         {
-            return ActionWithParameterString(apikey, proxyChainName, "setOptionProxyChainName");
+            return _commonActions.ActionWithParameterString(apikey, proxyChainName, "setOptionProxyChainName");
         }
 
         public IApiResult SetOptionProxyChainPassword(string apikey, string proxyChainPassword)
         {
-            return ActionWithParameterString(apikey, proxyChainPassword, "setOptionProxyChainPassword");
+            return _commonActions.ActionWithParameterString(apikey, proxyChainPassword, "setOptionProxyChainPassword");
         }
 
         public IApiResult SetOptionProxyChainPort(string apikey, int port)
         {
-            return ActionWithParameterInteger(apikey, port, "setOptionProxyChainPort");
+            return _commonActions.ActionWithParameterInteger(apikey, port, "setOptionProxyChainPort");
         }
 
         public IApiResult SetOptionProxyChainPrompt(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionProxyChainPrompt");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionProxyChainPrompt");
         }
 
         public IApiResult SetOptionProxyChainRealm(string apikey, string proxyChainRealm)
         {
-            return ActionWithParameterString(apikey, proxyChainRealm, "setOptionProxyChainRealm");
+            return _commonActions.ActionWithParameterString(apikey, proxyChainRealm, "setOptionProxyChainRealm");
         }
 
         public IApiResult SetOptionProxyChainSkipName(string apikey, string proxyChainSkipName)
         {
-            return ActionWithParameterString(apikey, proxyChainSkipName, "setOptionProxyChainSkipName");
+            return _commonActions.ActionWithParameterString(apikey, proxyChainSkipName, "setOptionProxyChainSkipName");
         }
 
         public IApiResult SetOptionProxyChainUserName(string apikey, string proxyChainUserName)
         {
-            return ActionWithParameterString(apikey, proxyChainUserName, "setOptionProxyChainUserName");
+            return _commonActions.ActionWithParameterString(apikey, proxyChainUserName, "setOptionProxyChainUserName");
         }
 
         public IApiResult SetOptionSingleCookieRequestHeader(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionSingleCookieRequestHeader");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionSingleCookieRequestHeader");
         }
 
         public IApiResult SetOptionTimeoutInSecs(string apikey, int secs)
         {
-            return ActionWithParameterInteger(apikey, secs, "setOptionTimeoutInSecs");
+            return _commonActions.ActionWithParameterInteger(apikey, secs, "setOptionTimeoutInSecs");
         }
 
         public IApiResult SetOptionUseProxyChain(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionUseProxyChain");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionUseProxyChain");
         }
 
         public IApiResult SetOptionUseProxyChainAuth(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionUseProxyChainAuth");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionUseProxyChainAuth");
         }
 
         public IApiResult Shutdown(string apikey)
@@ -420,27 +422,6 @@ setproxy (proxy* )
             var requestUri = UriHelper.BuildZapUri(_zapClient.Host, _zapClient.Port, uri, _zapClient.Protocol, parameters);
             var result = _zapClient.GetApiResult(requestUri);
             return result;
-        }
-
-        private IApiResult ActionWithParameterString(string apikey, string s, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", s);
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
-
-        private IApiResult ActionWithParameterBoolean(string apikey, bool option, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
-
-        private IApiResult ActionWithParameterInteger(string apikey, int n, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Integer", n.ToString());
-            return _zapClient.CallApi(Component, "action", action, parameters);
         }
     }
 }

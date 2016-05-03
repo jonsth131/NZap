@@ -69,10 +69,12 @@ namespace NZap.Components
         private const string Component = "spider";
 
         private readonly IZapClient _zapClient;
+        private readonly CommonActions _commonActions;
 
         public SpiderComponent(IZapClient zapClient)
         {
             _zapClient = zapClient;
+            _commonActions = new CommonActions(zapClient, Component);
         }
 
         public IApiResult GetExcludedFromScan()
@@ -256,7 +258,7 @@ namespace NZap.Components
 
         public IApiResult SetOptionHandleODataParametersVisited(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionHandleODataParametersVisited");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionHandleODataParametersVisited");
         }
 
         public IApiResult SetOptionHandleParameters(string apikey, string param)
@@ -268,82 +270,82 @@ namespace NZap.Components
 
         public IApiResult SetOptionMaxDepth(string apikey, int depth)
         {
-            return ActionWithParameterInteger(apikey, depth, "setOptionMaxDepth");
+            return _commonActions.ActionWithParameterInteger(apikey, depth, "setOptionMaxDepth");
         }
 
         public IApiResult SetOptionMaxScansInUi(string apikey, int maxScans)
         {
-            return ActionWithParameterInteger(apikey, maxScans, "setOptionMaxScansInUI");
+            return _commonActions.ActionWithParameterInteger(apikey, maxScans, "setOptionMaxScansInUI");
         }
 
         public IApiResult SetOptionParseComments(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionParseComments");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseComments");
         }
 
         public IApiResult SetOptionParseGit(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionParseGit");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseGit");
         }
 
         public IApiResult SetOptionParseRobotsTxt(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionParseRobotsTxt");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseRobotsTxt");
         }
 
         public IApiResult SetOptionParseSvnEntries(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionParseSVNEntries");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseSVNEntries");
         }
 
         public IApiResult SetOptionParseSitemapXml(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionParseSitemapXml");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseSitemapXml");
         }
 
         public IApiResult SetOptionPostForm(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionPostForm");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionPostForm");
         }
 
         public IApiResult SetOptionProcessForm(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionProcessForm");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionProcessForm");
         }
 
         public IApiResult SetOptionRequestWaitTime(string apikey, int waitTime)
         {
-            return ActionWithParameterInteger(apikey, waitTime, "setOptionRequestWaitTime");
+            return _commonActions.ActionWithParameterInteger(apikey, waitTime, "setOptionRequestWaitTime");
         }
 
         public IApiResult SetOptionScopeString(string apikey, string scope)
         {
-            return ActionWithParameterString(apikey, scope, "setOptionScopeString");
+            return _commonActions.ActionWithParameterString(apikey, scope, "setOptionScopeString");
         }
 
         public IApiResult SetOptionSendRefererHeader(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionSendRefererHeader");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionSendRefererHeader");
         }
 
         public IApiResult SetOptionShowAdvancedDialog(string apikey, bool option)
         {
-            return ActionWithParameterBoolean(apikey, option, "setOptionShowAdvancedDialog");
+            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionShowAdvancedDialog");
         }
 
         public IApiResult SetOptionSkipUrlString(string apikey, string url)
         {
-            return ActionWithParameterString(apikey, url, "setOptionSkipURLString");
+            return _commonActions.ActionWithParameterString(apikey, url, "setOptionSkipURLString");
         }
 
         public IApiResult SetOptionThreadCount(string apikey, int threadCount)
         {
-            return ActionWithParameterInteger(apikey, threadCount, "setOptionThreadCount");
+            return _commonActions.ActionWithParameterInteger(apikey, threadCount, "setOptionThreadCount");
         }
 
         public IApiResult SetOptionUserAgent(string apikey, string userAgent)
         {
-            return ActionWithParameterString(apikey, userAgent, "setOptionUserAgent");
+            return _commonActions.ActionWithParameterString(apikey, userAgent, "setOptionUserAgent");
         }
 
         public IApiResult Stop(string apikey, string scanId = null)
@@ -364,27 +366,6 @@ namespace NZap.Components
             var parameters = new Dictionary<string, string>();
             if (scanId != null) parameters.Add("scanId", scanId);
             return _zapClient.CallApi(Component, "view", action, parameters);
-        }
-
-        private IApiResult ActionWithParameterBoolean(string apikey, bool option, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
-
-        private IApiResult ActionWithParameterInteger(string apikey, int n, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Integer", n.ToString());
-            return _zapClient.CallApi(Component, "action", action, parameters);
-        }
-
-        private IApiResult ActionWithParameterString(string apikey, string s, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", s);
-            return _zapClient.CallApi(Component, "action", action, parameters);
         }
     }
 }
