@@ -68,11 +68,7 @@ namespace NZap
         public ISpiderComponent Spider { get; }
         public IUsersComponent Users { get; }
 
-        public ZapClient(string host, int port) : this(host, port, Protocols.http)
-        {
-        }
-
-        public ZapClient(string host, int port, Protocols protocol)
+        public ZapClient(string host, int port, Protocols protocol = Protocols.http)
         {
             Protocol = protocol;
             Host = host;

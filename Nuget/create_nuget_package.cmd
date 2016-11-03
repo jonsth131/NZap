@@ -1,3 +1,3 @@
 @echo off
-forfiles /m *.nuspec /c "cmd /c nuget.exe pack @file"
+cmd /c nuget.exe pack NZap.nuspec
 pause
