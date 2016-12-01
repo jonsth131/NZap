@@ -1,5 +1,5 @@
 ﻿using NZap.Entities;
-using NZap.Helpers;
+using NZap.Enums;
 
 namespace NZap.Components
 {
@@ -21,10 +21,12 @@ namespace NZap.Components
         private const string Component = "selenium";
 
         private readonly IZapClient _zapClient;
+        private readonly CommonActions _commonActions;
 
         public SeleniumComponent(IZapClient zapClient)
         {
             _zapClient = zapClient;
+            _commonActions = new CommonActions(zapClient, Component);
         }
 
         /// <summary>
@@ -33,7 +35,7 @@ namespace NZap.Components
         /// <returns>Current path to ChromeDriver</returns>
         public IApiResult GetOptionChromeDriverPath()
         {
-            return _zapClient.CallApi(Component, "view", "optionChromeDriverPath");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionChromeDriverPath");
         }
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace NZap.Components
         /// <returns>Current path to IEDriverServer</returns>
         public IApiResult GetOptionIeDriverPath()
         {
-            return _zapClient.CallApi(Component, "view", "optionIeDriverPath");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionIeDriverPath");
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace NZap.Components
         /// <returns>Current path to PhantomJS binary</returns>
         public IApiResult GetOptionPhantomJsBinaryPath()
         {
-            return _zapClient.CallApi(Component, "view", "optionPhantomJsBinaryPath");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionPhantomJsBinaryPath");
         }
 
         /// <summary>
@@ -62,9 +64,7 @@ namespace NZap.Components
         /// <returns>Result of the action</returns>
         public IApiResult SetOptionChromeDriverPath(string apikey, string path)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", path);
-            return _zapClient.CallApi(Component, "action", "setOptionChromeDriverPath", parameters);
+            return _commonActions.ActionWithParameter(apikey, path, "setOptionChromeDriverPath");
         }
 
         /// <summary>
@@ -75,9 +75,7 @@ namespace NZap.Components
         /// <returns>Result of the action</returns>
         public IApiResult SetOptionIeDriverPath(string apikey, string path)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", path);
-            return _zapClient.CallApi(Component, "action", "setOptionIeDriverPath", parameters);
+            return _commonActions.ActionWithParameter(apikey, path, "setOptionIeDriverPath");
         }
 
         /// <summary>
@@ -88,9 +86,7 @@ namespace NZap.Components
         /// <returns>Result of the action</returns>
         public IApiResult SetOptionPhantomJsBinaryPath(string apikey, string path)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", path);
-            return _zapClient.CallApi(Component, "action", "setOptionPhantomJsBinaryPath", parameters);
+            return _commonActions.ActionWithParameter(apikey, path, "setOptionPhantomJsBinaryPath");
         }
     }
 }

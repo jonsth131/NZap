@@ -36,7 +36,7 @@ namespace NZap.Components
         /// <returns>List of records the passive scanner still has to scan</returns>
         public IApiResult GetRecordsToScan()
         {
-            return _zapClient.CallApi(Component, "view", "recordsToScan");
+            return _zapClient.CallApi(Component, ActionTypes.View, "recordsToScan");
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace NZap.Components
         /// <returns>List of all passive scanners available</returns>
         public IApiResult GetScanners()
         {
-            return _zapClient.CallApi(Component, "view", "scanners");
+            return _zapClient.CallApi(Component, ActionTypes.View, "scanners");
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace NZap.Components
         public IApiResult DisableAllScanners(string apikey)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            return _zapClient.CallApi(Component, "action", "disableAllScanners", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "disableAllScanners", parameters);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace NZap.Components
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("ids", ids);
-            return _zapClient.CallApi(Component, "action", "disableScanners", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "disableScanners", parameters);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace NZap.Components
         public IApiResult EnableAllScanners(string apikey)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            return _zapClient.CallApi(Component, "action", "enableAllScanners", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "enableAllScanners", parameters);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace NZap.Components
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("ids", ids);
-            return _zapClient.CallApi(Component, "action", "enableScanners", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "enableScanners", parameters);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace NZap.Components
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("enabled", enabled.ToString());
-            return _zapClient.CallApi(Component, "action", "setEnabled", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setEnabled", parameters);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("id", id);
             parameters.Add("alertThreshold", alertThreshold.ToString());
-            return _zapClient.CallApi(Component, "action", "setScannerAlertThreshold", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setScannerAlertThreshold", parameters);
         }
     }
 }

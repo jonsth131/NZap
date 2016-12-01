@@ -103,5 +103,13 @@ namespace Tests.ComponentTests
             var apiResult = ZapClient.AjaxSpider.GetOptionReloadWait();
             SingleResultAsserts(apiResult, expected, expectedKey);
         }
+
+        [Test]
+        public void TestSetOptionClickDefaultElems()
+        {
+            const int expected = 0;
+            var apiResult = ZapClient.AjaxSpider.SetOptionClickDefaultElems(Apikey, true);
+            ActionResultAsserts(apiResult, expected);
+        }
     }
 }

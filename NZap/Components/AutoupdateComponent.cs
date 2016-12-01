@@ -1,4 +1,5 @@
 ﻿using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -49,123 +50,123 @@ namespace NZap.Components
 
         public IApiResult GetIsLatestVersion()
         {
-            return _zapClient.CallApi(Component, "view", "isLatestVersion");
+            return _zapClient.CallApi(Component, ActionTypes.View, "isLatestVersion");
         }
 
         public IApiResult GetLatestVersionNumber()
         {
-            return _zapClient.CallApi(Component, "view", "latestVersionNumber");
+            return _zapClient.CallApi(Component, ActionTypes.View, "latestVersionNumber");
         }
 
         public IApiResult GetOptionAddonDirectories()
         {
-            return _zapClient.CallApi(Component, "view", "optionAddonDirectories");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionAddonDirectories");
         }
 
         public IApiResult GetOptionCheckAddonUpdates()
         {
-            return _zapClient.CallApi(Component, "view", "optionCheckAddonUpdates");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionCheckAddonUpdates");
         }
 
         public IApiResult GetOptionCheckOnStart()
         {
-            return _zapClient.CallApi(Component, "view", "optionCheckOnStart");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionCheckOnStart");
         }
 
         public IApiResult GetOptionDayLastChecked()
         {
-            return _zapClient.CallApi(Component, "view", "optionDayLastChecked");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionDayLastChecked");
         }
 
         public IApiResult GetOptionDayLastInstallWarned()
         {
-            return _zapClient.CallApi(Component, "view", "optionDayLastInstallWarned");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionDayLastInstallWarned");
         }
 
         public IApiResult GetOptionDayLastUpdateWarned()
         {
-            return _zapClient.CallApi(Component, "view", "optionDayLastUpdateWarned");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionDayLastUpdateWarned");
         }
 
         public IApiResult GetOptionDownloadDirectory()
         {
-            return _zapClient.CallApi(Component, "view", "optionDownloadDirectory");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionDownloadDirectory");
         }
 
         public IApiResult GetOptionDownloadNewRelease()
         {
-            return _zapClient.CallApi(Component, "view", "optionDownloadNewRelease");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionDownloadNewRelease");
         }
 
         public IApiResult GetOptionInstallAddonUpdates()
         {
-            return _zapClient.CallApi(Component, "view", "optionInstallAddonUpdates");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionInstallAddonUpdates");
         }
 
         public IApiResult GetOptionInstallScannerRules()
         {
-            return _zapClient.CallApi(Component, "view", "optionInstallScannerRules");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionInstallScannerRules");
         }
 
         public IApiResult GetOptionReportAlphaAddons()
         {
-            return _zapClient.CallApi(Component, "view", "optionReportAlphaAddons");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionReportAlphaAddons");
         }
 
         public IApiResult GetOptionReportBetaAddons()
         {
-            return _zapClient.CallApi(Component, "view", "optionReportBetaAddons");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionReportBetaAddons");
         }
 
         public IApiResult GetOptionReportReleaseAddons()
         {
-            return _zapClient.CallApi(Component, "view", "optionReportReleaseAddons");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionReportReleaseAddons");
         }
 
         public IApiResult DownloadLatestRelease(string apikey)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            return _zapClient.CallApi(Component, "action", "downloadLatestRelease", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "downloadLatestRelease", parameters);
         }
 
         public IApiResult SetOptionCheckAddonUpdates(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionCheckAddonUpdates");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionCheckAddonUpdates");
         }
 
         public IApiResult SetOptionCheckOnStart(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionCheckOnStart");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionCheckOnStart");
         }
 
         public IApiResult SetOptionDownloadNewRelease(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionDownloadNewRelease");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionDownloadNewRelease");
         }
 
         public IApiResult SetOptionInstallAddonUpdates(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionInstallAddonUpdates");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionInstallAddonUpdates");
         }
 
         public IApiResult SetOptionInstallScannerRules(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionInstallScannerRules");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionInstallScannerRules");
         }
 
         public IApiResult SetOptionReportAlphaAddons(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionReportAlphaAddons");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionReportAlphaAddons");
         }
 
         public IApiResult SetOptionReportBetaAddons(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionReportBetaAddons");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionReportBetaAddons");
         }
 
         public IApiResult SetOptionReportReleaseAddons(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionReportReleaseAddons");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionReportReleaseAddons");
         }
     }
 }

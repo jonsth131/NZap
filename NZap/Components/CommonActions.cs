@@ -1,4 +1,6 @@
+using System;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -14,25 +16,30 @@ namespace NZap.Components
             _component = component;
         }
 
-        internal IApiResult ActionWithParameterBoolean(string apikey, bool option, string action)
+        internal IApiResult ActionWithParameter<T>(string apikey, T option, string action)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Boolean", option.ToString());
-            return _zapClient.CallApi(_component, "action", action, parameters);
+            var parameter = GetParameterName(typeof(T));
+            parameters.Add(parameter, option.ToString());
+            return _zapClient.CallApi(_component, ActionTypes.Action, action, parameters);
         }
 
-        internal IApiResult ActionWithParameterString(string apikey, string s, string action)
+        private static string GetParameterName(Type type)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", s);
-            return _zapClient.CallApi(_component, "action", action, parameters);
-        }
-
-        internal IApiResult ActionWithParameterInteger(string apikey, int n, string action)
-        {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("Integer", n.ToString());
-            return _zapClient.CallApi(_component, "action", action, parameters);
+            var parameter = string.Empty;
+            if (type == typeof(int))
+            {
+                parameter = "Integer";
+            }
+            else if (type == typeof(bool))
+            {
+                parameter = "Boolean";
+            }
+            else if (type == typeof(string))
+            {
+                parameter = "String";
+            }
+            return parameter;
         }
     }
 }

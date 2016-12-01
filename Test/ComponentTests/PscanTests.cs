@@ -19,7 +19,7 @@ namespace Tests.ComponentTests
         [Test]
         public void TestGetScannersShouldSucceed()
         {
-            const int expected = 14;
+            const int expected = 15;
             const string expectedKey = "scanners";
             var apiResult = ZapClient.Pscan.GetScanners();
             ResultAsserts(apiResult, expected, expectedKey);

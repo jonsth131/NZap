@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using NUnit.Framework;
+using NZap.Enums;
 
 namespace Tests
 {
@@ -27,7 +28,7 @@ namespace Tests
         public void InvalidComponendAndActionShouldThrowException()
         {
             const string expectedExceptionMessage = " (400) ";
-            var webException = Assert.Throws<WebException>(() => ZapClient.CallApi("test", "view", "test"));
+            var webException = Assert.Throws<WebException>(() => ZapClient.CallApi("test", ActionTypes.View, "test"));
             StringAssert.Contains(expectedExceptionMessage, webException.Message);
         }
 
@@ -51,7 +52,7 @@ namespace Tests
         public void InvalidActionShouldThrowException()
         {
             const string expectedExceptionMessage = " (400) ";
-            var webException = Assert.Throws<WebException>(() => ZapClient.CallApi("core", "view", "test"));
+            var webException = Assert.Throws<WebException>(() => ZapClient.CallApi("core", ActionTypes.View, "test"));
             StringAssert.Contains(expectedExceptionMessage, webException.Message);
         }
 
@@ -60,7 +61,7 @@ namespace Tests
         {
             const int expectedCount = 0;
             const string expectedKey = "version";
-            var result = ZapClient.CallApi("core", "view", "version");
+            var result = ZapClient.CallApi("core", ActionTypes.View, "version");
             SingleResultAsserts(result, expectedCount, expectedKey);
         }
 
@@ -69,7 +70,7 @@ namespace Tests
         {
             const int expectedCount = 0;
             const string expectedKey = "version";
-            var result = ZapClient.CallApi("core", "view", "version", null);
+            var result = ZapClient.CallApi("core", ActionTypes.View, "version", null);
             SingleResultAsserts(result, expectedCount, expectedKey);
         }
 
@@ -78,7 +79,7 @@ namespace Tests
         {
             const int expectedCount = 0;
             const string expectedKey = "version";
-            var result = ZapClient.CallApi("core", "view", "version", new Dictionary<string, string>());
+            var result = ZapClient.CallApi("core", ActionTypes.View, "version", new Dictionary<string, string>());
             SingleResultAsserts(result, expectedCount, expectedKey);
         }
     }

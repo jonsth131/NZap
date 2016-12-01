@@ -1,4 +1,5 @@
 ﻿using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -29,7 +30,7 @@ namespace NZap.Components
         /// <returns>Result</returns>
         public IApiResult GetReveal()
         {
-            return _zapClient.CallApi(Component, "view", "reveal");
+            return _zapClient.CallApi(Component, ActionTypes.View, "reveal");
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace NZap.Components
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("reveal", reveal.ToString());
-            return _zapClient.CallApi(Component, "action", "setReveal", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setReveal", parameters);
         }
     }
 }

@@ -37,8 +37,11 @@ namespace NZap
         IApiResult CallApi(string uri, IDictionary<string, string> parameters);
         IApiResult CallApi(string component, string type, string action);
         IApiResult CallApi(string component, string type, string action, IDictionary<string, string> parameters);
+        IApiResult CallApi(string component, ActionTypes type, string action);
+        IApiResult CallApi(string component, ActionTypes type, string action, IDictionary<string, string> parameters);
         string GetApiResult(Uri requestUri);
         IReportResponse CallReportApi(string component, string type, string action, IDictionary<string, string> parameters = null);
+        IReportResponse CallReportApi(string component, ActionTypes type, string action, IDictionary<string, string> parameters = null);
     }
 
     public class ZapClient : IZapClient
@@ -119,6 +122,16 @@ namespace NZap
             return CallApi(uri, parameters);
         }
 
+        public IApiResult CallApi(string component, ActionTypes type, string action)
+        {
+            return CallApi(component, type.ToString().ToLower(), action);
+        }
+
+        public IApiResult CallApi(string component, ActionTypes type, string action, IDictionary<string, string> parameters)
+        {
+            return CallApi(component, type.ToString().ToLower(), action, parameters);
+        }
+
         public string GetApiResult(Uri requestUri)
         {
             string result;
@@ -135,6 +148,11 @@ namespace NZap
             var requestUri = UriHelper.BuildZapUri(Host, Port, uriString, Protocol, parameters);
             var apiResult = GetApiResult(requestUri);
             return new ReportResponse(apiResult);
+        }
+
+        public IReportResponse CallReportApi(string component, ActionTypes type, string action, IDictionary<string, string> parameters = null)
+        {
+            return CallReportApi(component, type.ToString().ToLower(), action, parameters);
         }
     }
 }

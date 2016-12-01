@@ -1,5 +1,6 @@
 ﻿using System;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Exceptions;
 using NZap.Helpers;
 
@@ -32,12 +33,12 @@ namespace NZap.Components
 
         public IApiResult ListEngines()
         {
-            return _zapClient.CallApi(Component, "view", "listEngines");
+            return _zapClient.CallApi(Component, ActionTypes.View, "listEngines");
         }
 
         public IApiResult ListScripts()
         {
-            return _zapClient.CallApi(Component, "view", "listScripts");
+            return _zapClient.CallApi(Component, ActionTypes.View, "listScripts");
         }
 
         public IApiResult Disable(string apikey, string scriptName)
@@ -60,7 +61,7 @@ namespace NZap.Components
             if (scriptDescription != null) parameters.Add("scriptDescription", scriptDescription);
             try
             {
-                return _zapClient.CallApi(Component, "action", "load", parameters);
+                return _zapClient.CallApi(Component, ActionTypes.Action, "load", parameters);
             }
             catch (Exception)
             {
@@ -84,7 +85,7 @@ namespace NZap.Components
             parameters.Add("scriptName", scriptName);
             try
             {
-                return _zapClient.CallApi(Component, "action", action, parameters);
+                return _zapClient.CallApi(Component, ActionTypes.Action, action, parameters);
             }
             catch (Exception)
             {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
+using NZap.Enums;
 
 namespace NZap.Components
 {
@@ -80,7 +81,7 @@ namespace NZap.Components
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "view", action, parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, action, parameters);
         }
 
     }

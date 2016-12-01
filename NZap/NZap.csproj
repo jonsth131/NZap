@@ -67,6 +67,7 @@
     <Compile Include="Entities\ApiResultElement.cs" />
     <Compile Include="Entities\ApiResultList.cs" />
     <Compile Include="Entities\ReportResponse.cs" />
+    <Compile Include="Enums\ActionTypes.cs" />
     <Compile Include="Enums\AlertThreshold.cs" />
     <Compile Include="Enums\AuthMethodName.cs" />
     <Compile Include="Enums\Protocols.cs" />

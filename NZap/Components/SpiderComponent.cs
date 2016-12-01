@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -79,118 +80,118 @@ namespace NZap.Components
 
         public IApiResult GetExcludedFromScan()
         {
-            return _zapClient.CallApi(Component, "view", "excludedFromScan");
+            return _zapClient.CallApi(Component, ActionTypes.View, "excludedFromScan");
         }
 
         public IApiResult GetFullResults(string scanId)
         {
             var parameters = new Dictionary<string, string> { { "scanId", scanId } };
-            return _zapClient.CallApi(Component, "view", "fullResults", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "fullResults", parameters);
         }
 
         public IApiResult GetOptionDomainsAlwaysInScope()
         {
-            return _zapClient.CallApi(Component, "view", "optionDomainsAlwaysInScope");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionDomainsAlwaysInScope");
         }
 
         public IApiResult GetOptionDomainsAlwaysInScopeEnabled()
         {
-            return _zapClient.CallApi(Component, "view", "optionDomainsAlwaysInScopeEnabled");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionDomainsAlwaysInScopeEnabled");
         }
 
         public IApiResult GetOptionHandleODataParametersVisited()
         {
-            return _zapClient.CallApi(Component, "view", "optionHandleODataParametersVisited");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionHandleODataParametersVisited");
         }
 
         public IApiResult GetOptionHandleParameters()
         {
-            return _zapClient.CallApi(Component, "view", "optionHandleParameters");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionHandleParameters");
         }
 
         public IApiResult GetOptionMaxDepth()
         {
-            return _zapClient.CallApi(Component, "view", "optionMaxDepth");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionMaxDepth");
         }
 
         public IApiResult GetOptionMaxScansInUi()
         {
-            return _zapClient.CallApi(Component, "view", "optionMaxScansInUI");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionMaxScansInUI");
         }
 
         public IApiResult GetOptionParseComments()
         {
-            return _zapClient.CallApi(Component, "view", "optionParseComments");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionParseComments");
         }
 
         public IApiResult GetOptionParseGit()
         {
-            return _zapClient.CallApi(Component, "view", "optionParseGit");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionParseGit");
         }
 
         public IApiResult GetOptionParseRobotsTxt()
         {
-            return _zapClient.CallApi(Component, "view", "optionParseRobotsTxt");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionParseRobotsTxt");
         }
 
         public IApiResult GetOptionParseSvnEntries()
         {
-            return _zapClient.CallApi(Component, "view", "optionParseSVNEntries");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionParseSVNEntries");
         }
 
         public IApiResult GetOptionParseSitemapXml()
         {
-            return _zapClient.CallApi(Component, "view", "optionParseSitemapXml");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionParseSitemapXml");
         }
 
         public IApiResult GetOptionPostForm()
         {
-            return _zapClient.CallApi(Component, "view", "optionPostForm");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionPostForm");
         }
 
         public IApiResult GetOptionProcessForm()
         {
-            return _zapClient.CallApi(Component, "view", "optionProcessForm");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionProcessForm");
         }
 
         public IApiResult GetOptionRequestWaitTime()
         {
-            return _zapClient.CallApi(Component, "view", "optionRequestWaitTime");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionRequestWaitTime");
         }
 
         public IApiResult GetOptionScope()
         {
-            return _zapClient.CallApi(Component, "view", "optionScope");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionScope");
         }
 
         public IApiResult GetOptionScopeText()
         {
-            return _zapClient.CallApi(Component, "view", "optionScopeText");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionScopeText");
         }
 
         public IApiResult GetOptionSendRefererHeader()
         {
-            return _zapClient.CallApi(Component, "view", "optionSendRefererHeader");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionSendRefererHeader");
         }
 
         public IApiResult GetOptionShowAdvancedDialog()
         {
-            return _zapClient.CallApi(Component, "view", "optionShowAdvancedDialog");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionShowAdvancedDialog");
         }
 
         public IApiResult GetOptionSkipUrlString()
         {
-            return _zapClient.CallApi(Component, "view", "optionSkipURLString");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionSkipURLString");
         }
 
         public IApiResult GetOptionThreadCount()
         {
-            return _zapClient.CallApi(Component, "view", "optionThreadCount");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionThreadCount");
         }
 
         public IApiResult GetOptionUserAgent()
         {
-            return _zapClient.CallApi(Component, "view", "optionUserAgent");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionUserAgent");
         }
 
         public IApiResult GetResults(string scanId = null)
@@ -200,7 +201,7 @@ namespace NZap.Components
 
         public IApiResult GetScans()
         {
-            return _zapClient.CallApi(Component, "view", "scans");
+            return _zapClient.CallApi(Component, ActionTypes.View, "scans");
         }
 
         public IApiResult GetStatus(string scanId = null)
@@ -211,40 +212,40 @@ namespace NZap.Components
         public IApiResult ClearExcludedFromScan(string apikey)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            return _zapClient.CallApi(Component, "action", "clearExcludedFromScan", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "clearExcludedFromScan", parameters);
         }
 
         public IApiResult ExcludeFromScan(string apikey, string regex)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "action", "excludeFromScan", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "excludeFromScan", parameters);
         }
 
         public IApiResult Pause(string apikey, string scanId)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("scanId", scanId);
-            return _zapClient.CallApi(Component, "action", "pause", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "pause", parameters);
         }
 
         public IApiResult PauseAllScans(string apikey)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            return _zapClient.CallApi(Component, "action", "pauseAllScans", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "pauseAllScans", parameters);
         }
 
         public IApiResult RemoveAllScans(string apikey)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            return _zapClient.CallApi(Component, "action", "removeAllScans", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "removeAllScans", parameters);
         }
 
         public IApiResult Scan(string apikey, string url, IDictionary<string, string> parameters = null)
         {
             parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey, parameters);
             parameters.Add("url", url);
-            return _zapClient.CallApi(Component, "action", "scan", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "scan", parameters);
         }
 
         public IApiResult ScanAsUser(string apikey, string url, string contextId, string userId, IDictionary<string, string> parameters = null)
@@ -253,119 +254,119 @@ namespace NZap.Components
             parameters.Add("url", url);
             parameters.Add("contextId", contextId);
             parameters.Add("userId", userId);
-            return _zapClient.CallApi(Component, "action", "scanAsUser", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "scanAsUser", parameters);
         }
 
         public IApiResult SetOptionHandleODataParametersVisited(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionHandleODataParametersVisited");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionHandleODataParametersVisited");
         }
 
         public IApiResult SetOptionHandleParameters(string apikey, string param)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("param", param);
-            return _zapClient.CallApi(Component, "action", "setOptionHandleParameters", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setOptionHandleParameters", parameters);
         }
 
         public IApiResult SetOptionMaxDepth(string apikey, int depth)
         {
-            return _commonActions.ActionWithParameterInteger(apikey, depth, "setOptionMaxDepth");
+            return _commonActions.ActionWithParameter(apikey, depth, "setOptionMaxDepth");
         }
 
         public IApiResult SetOptionMaxScansInUi(string apikey, int maxScans)
         {
-            return _commonActions.ActionWithParameterInteger(apikey, maxScans, "setOptionMaxScansInUI");
+            return _commonActions.ActionWithParameter(apikey, maxScans, "setOptionMaxScansInUI");
         }
 
         public IApiResult SetOptionParseComments(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseComments");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionParseComments");
         }
 
         public IApiResult SetOptionParseGit(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseGit");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionParseGit");
         }
 
         public IApiResult SetOptionParseRobotsTxt(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseRobotsTxt");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionParseRobotsTxt");
         }
 
         public IApiResult SetOptionParseSvnEntries(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseSVNEntries");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionParseSVNEntries");
         }
 
         public IApiResult SetOptionParseSitemapXml(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionParseSitemapXml");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionParseSitemapXml");
         }
 
         public IApiResult SetOptionPostForm(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionPostForm");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionPostForm");
         }
 
         public IApiResult SetOptionProcessForm(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionProcessForm");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionProcessForm");
         }
 
         public IApiResult SetOptionRequestWaitTime(string apikey, int waitTime)
         {
-            return _commonActions.ActionWithParameterInteger(apikey, waitTime, "setOptionRequestWaitTime");
+            return _commonActions.ActionWithParameter(apikey, waitTime, "setOptionRequestWaitTime");
         }
 
         public IApiResult SetOptionScopeString(string apikey, string scope)
         {
-            return _commonActions.ActionWithParameterString(apikey, scope, "setOptionScopeString");
+            return _commonActions.ActionWithParameter(apikey, scope, "setOptionScopeString");
         }
 
         public IApiResult SetOptionSendRefererHeader(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionSendRefererHeader");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionSendRefererHeader");
         }
 
         public IApiResult SetOptionShowAdvancedDialog(string apikey, bool option)
         {
-            return _commonActions.ActionWithParameterBoolean(apikey, option, "setOptionShowAdvancedDialog");
+            return _commonActions.ActionWithParameter(apikey, option, "setOptionShowAdvancedDialog");
         }
 
         public IApiResult SetOptionSkipUrlString(string apikey, string url)
         {
-            return _commonActions.ActionWithParameterString(apikey, url, "setOptionSkipURLString");
+            return _commonActions.ActionWithParameter(apikey, url, "setOptionSkipURLString");
         }
 
         public IApiResult SetOptionThreadCount(string apikey, int threadCount)
         {
-            return _commonActions.ActionWithParameterInteger(apikey, threadCount, "setOptionThreadCount");
+            return _commonActions.ActionWithParameter(apikey, threadCount, "setOptionThreadCount");
         }
 
         public IApiResult SetOptionUserAgent(string apikey, string userAgent)
         {
-            return _commonActions.ActionWithParameterString(apikey, userAgent, "setOptionUserAgent");
+            return _commonActions.ActionWithParameter(apikey, userAgent, "setOptionUserAgent");
         }
 
         public IApiResult Stop(string apikey, string scanId = null)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             if (scanId != null) parameters.Add("scanId", scanId);
-            return _zapClient.CallApi(Component, "action", "stop", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "stop", parameters);
         }
 
         public IApiResult StopAllScans(string apikey)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            return _zapClient.CallApi(Component, "action", "stopAllScans", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "stopAllScans", parameters);
         }
 
         private IApiResult GetScanIdAction(string scanId, string action)
         {
             var parameters = new Dictionary<string, string>();
             if (scanId != null) parameters.Add("scanId", scanId);
-            return _zapClient.CallApi(Component, "view", action, parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, action, parameters);
         }
     }
 }

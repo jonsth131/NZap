@@ -34,30 +34,30 @@ namespace NZap.Components
         public IApiResult GetAuthenticationMethod(string contextId)
         {
             var parameters = new Dictionary<string, string> { { "contextId", contextId } };
-            return _zapClient.CallApi(Component, "view", "getAuthenticationMethod", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "getAuthenticationMethod", parameters);
         }
 
         public IApiResult GetAuthenticationMethodConfigParams(AuthMethodName authMethodName)
         {
             var parameters = new Dictionary<string, string> { { "authMethodName", authMethodName.ToString() } };
-            return _zapClient.CallApi(Component, "view", "getAuthenticationMethodConfigParams", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "getAuthenticationMethodConfigParams", parameters);
         }
 
         public IApiResult GetLoggedInIndicator(string contextId)
         {
             var parameters = new Dictionary<string, string> { { "contextId", contextId } };
-            return _zapClient.CallApi(Component, "view", "getLoggedInIndicator", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "getLoggedInIndicator", parameters);
         }
 
         public IApiResult GetLoggedOutIndicator(string contextId)
         {
             var parameters = new Dictionary<string, string> { { "contextId", contextId } };
-            return _zapClient.CallApi(Component, "view", "getLoggedOutIndicator", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "getLoggedOutIndicator", parameters);
         }
 
         public IApiResult GetSupportedAuthenticationMethods()
         {
-            return _zapClient.CallApi(Component, "view", "getSupportedAuthenticationMethods");
+            return _zapClient.CallApi(Component, ActionTypes.View, "getSupportedAuthenticationMethods");
         }
 
         public IApiResult SetAuthenticationMethod(string apikey, string contextId, string authMethodName,
@@ -67,7 +67,7 @@ namespace NZap.Components
             parameters.Add("contextId", contextId);
             parameters.Add("authMethodName", authMethodName);
             if (aauthMethodConfigParams != null) parameters.Add("aauthMethodConfigParams", aauthMethodConfigParams);
-            return _zapClient.CallApi(Component, "action", "setAuthenticationMethod", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setAuthenticationMethod", parameters);
         }
 
         public IApiResult SetLoggedInIndicator(string apikey, string contextId, string loggedInIndicatorRegex)
@@ -75,7 +75,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextId", contextId);
             parameters.Add("loggedInIndicatorRegex", loggedInIndicatorRegex);
-            return _zapClient.CallApi(Component, "action", "setLoggedInIndicator", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setLoggedInIndicator", parameters);
         }
 
         public IApiResult SetLoggedOutIndicator(string apikey, string contextId, string loggedOutIndicatorRegex)
@@ -83,7 +83,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextId", contextId);
             parameters.Add("loggedOutIndicatorRegex", loggedOutIndicatorRegex);
-            return _zapClient.CallApi(Component, "action", "setLoggedOutIndicator", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setLoggedOutIndicator", parameters);
         }
     }
 }

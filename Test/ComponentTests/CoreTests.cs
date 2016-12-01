@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using NZap.Exceptions;
 using NUnit.Framework;
@@ -255,15 +254,6 @@ namespace Tests.ComponentTests
             var apiResult = ZapClient.Core.GetSites();
             Assert.IsNull(apiResult.Key);
             Assert.IsNull(apiResult.Value);
-        }
-
-        [Test]
-        public void TestGetStatsShouldSucceed()
-        {
-            const int expected = 0;
-            var apiResult = ZapClient.Core.GetStats();
-            var actual = apiResult.ResultList.Count;
-            Assert.AreEqual(expected, actual);
         }
 
         [Test]

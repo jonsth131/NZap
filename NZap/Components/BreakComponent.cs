@@ -1,4 +1,5 @@
 ﻿using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -52,7 +53,7 @@ namespace NZap.Components
             parameters.Add("type", type);
             parameters.Add("scope", scope);
             parameters.Add("state", state);
-            return _zapClient.CallApi(Component, "action", "break", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "break", parameters);
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace NZap.Components
             parameters.Add("match", match);
             parameters.Add("inverse", inverse);
             parameters.Add("ignorecase", ignorecase.ToString());
-            return _zapClient.CallApi(Component, "action", action, parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, action, parameters);
         }
     }
 }

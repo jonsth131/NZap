@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -32,7 +33,7 @@ namespace NZap.Components
         public IApiResult GetAuthorizationDetectionMethod(string contextId)
         {
             var parameters = new Dictionary<string, string> { { "contextId", contextId } };
-            return _zapClient.CallApi(Component, "view", "getAuthorizationDetectionMethod", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "getAuthorizationDetectionMethod", parameters);
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace NZap.Components
         {
             parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey, parameters);
             parameters.Add("contextId", contextId);
-            return _zapClient.CallApi(Component, "action", "setBasicAuthorizationDetectionMethod", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setBasicAuthorizationDetectionMethod", parameters);
         }
     }
 }

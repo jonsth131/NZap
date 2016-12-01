@@ -1,5 +1,5 @@
 ﻿using NZap.Entities;
-using NZap.Helpers;
+using NZap.Enums;
 
 namespace NZap.Components
 {
@@ -18,10 +18,12 @@ namespace NZap.Components
         private const string Component = "acsrf";
 
         private readonly IZapClient _zapClient;
+        private readonly CommonActions _commonActions;
 
         public AcsrfComponent(IZapClient zapClient)
         {
             _zapClient = zapClient;
+            _commonActions = new CommonActions(zapClient, Component);
         }
 
         /// <summary>
@@ -30,7 +32,7 @@ namespace NZap.Components
         /// <returns>List of anti CSRF tokens</returns>
         public IApiResult GetOptionTokenNames()
         {
-            return _zapClient.CallApi(Component, "view", "optionTokensNames");
+            return _zapClient.CallApi(Component, ActionTypes.View, "optionTokensNames");
         }
 
         /// <summary>
@@ -41,9 +43,7 @@ namespace NZap.Components
         /// <returns>Result of the action</returns>
         public IApiResult AddOptionToken(string apikey, string name)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", name);
-            return _zapClient.CallApi(Component, "action", "addOptionToken", parameters);
+            return _commonActions.ActionWithParameter(apikey, name, "addOptionToken");
         }
 
         /// <summary>
@@ -54,9 +54,7 @@ namespace NZap.Components
         /// <returns>Result of the action</returns>
         public IApiResult RemoveOptionToken(string apikey, string name)
         {
-            var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
-            parameters.Add("String", name);
-            return _zapClient.CallApi(Component, "action", "removeOptionToken", parameters);
+            return _commonActions.ActionWithParameter(apikey, name, "removeOptionToken");
         }
     }
 }

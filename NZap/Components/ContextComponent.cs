@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -43,48 +44,48 @@ namespace NZap.Components
         public IApiResult GetContext(string contextName)
         {
             var parameters = new Dictionary<string, string> { { "contextName", contextName } };
-            return _zapClient.CallApi(Component, "view", "context", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "context", parameters);
         }
 
         public IApiResult GetContextList()
         {
-            return _zapClient.CallApi(Component, "view", "contextList");
+            return _zapClient.CallApi(Component, ActionTypes.View, "contextList");
         }
 
         public IApiResult GetExcludeRegexs(string contextName)
         {
             var parameters = new Dictionary<string, string> { { "contextName", contextName } };
-            return _zapClient.CallApi(Component, "view", "excludeRegexs", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "excludeRegexs", parameters);
         }
 
         public IApiResult GetExcludedTechnologyList(string contextName)
         {
             var parameters = new Dictionary<string, string> { { "contextName", contextName } };
-            return _zapClient.CallApi(Component, "view", "excludedTechnologyList", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "excludedTechnologyList", parameters);
         }
 
         public IApiResult GetIncludeRegexs(string contextName)
         {
             var parameters = new Dictionary<string, string> { { "contextName", contextName } };
-            return _zapClient.CallApi(Component, "view", "includeRegexs", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "includeRegexs", parameters);
         }
 
         public IApiResult GetIncludedTechnologyList(string contextName)
         {
             var parameters = new Dictionary<string, string> { { "contextName", contextName } };
-            return _zapClient.CallApi(Component, "view", "includedTechnologyList", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "includedTechnologyList", parameters);
         }
 
         public IApiResult GetTechnologyList()
         {
-            return _zapClient.CallApi(Component, "view", "technologyList");
+            return _zapClient.CallApi(Component, ActionTypes.View, "technologyList");
         }
 
         public IApiResult ExcludeAllContextTechnologies(string apikey, string contextName)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextName", contextName);
-            return _zapClient.CallApi(Component, "action", "excludeAllContextTechnologies", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "excludeAllContextTechnologies", parameters);
         }
 
         public IApiResult ExcludeContextTechnologies(string apikey, string contextName, string technologyNames)
@@ -102,21 +103,21 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextName", contextName);
             parameters.Add("contextFile", contextFile);
-            return _zapClient.CallApi(Component, "action", "exportContext", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "exportContext", parameters);
         }
 
         public IApiResult ImportContext(string apikey, string contextFile)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextFile", contextFile);
-            return _zapClient.CallApi(Component, "action", "importContext", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "importContext", parameters);
         }
 
         public IApiResult IncludeAllContextTechnologies(string apikey, string contextName)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextName", contextName);
-            return _zapClient.CallApi(Component, "action", "includeAllContextTechnologies", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "includeAllContextTechnologies", parameters);
         }
 
         public IApiResult IncludeContextTechnologies(string apikey, string contextName, string technologyNames)
@@ -133,14 +134,14 @@ namespace NZap.Components
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextName", contextName);
-            return _zapClient.CallApi(Component, "action", "newContext", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "newContext", parameters);
         }
 
         public IApiResult RemoveContext(string apikey, string contextName)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextName", contextName);
-            return _zapClient.CallApi(Component, "action", "removeContext", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "removeContext", parameters);
         }
 
         public IApiResult SetContextInScope(string apikey, string contextName, bool inScope)
@@ -148,7 +149,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextName", contextName);
             parameters.Add("booleanInScope", inScope.ToString());
-            return _zapClient.CallApi(Component, "action", "setContextInScope", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setContextInScope", parameters);
         }
 
         private IApiResult SetContextTechnologies(string apikey, string contextName, string technologyNames, string action)
@@ -156,7 +157,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextName", contextName);
             parameters.Add("technologyNames", technologyNames);
-            return _zapClient.CallApi(Component, "action", action, parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, action, parameters);
         }
 
         private IApiResult SetContext(string apikey, string contextName, string regex, string action)
@@ -164,7 +165,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("contextName", contextName);
             parameters.Add("regex", regex);
-            return _zapClient.CallApi(Component, "action", action, parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, action, parameters);
         }
     }
 }

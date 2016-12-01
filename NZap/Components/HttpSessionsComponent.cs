@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
+using NZap.Enums;
 using NZap.Helpers;
 
 namespace NZap.Components
@@ -36,20 +37,20 @@ namespace NZap.Components
         public IApiResult GetActiveSession(string site)
         {
             var parameters = new Dictionary<string, string> { { "site", site } };
-            return _zapClient.CallApi(Component, "view", "activeSession", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "activeSession", parameters);
         }
 
         public IApiResult GetSessionTokens(string site)
         {
             var parameters = new Dictionary<string, string> { { "site", site } };
-            return _zapClient.CallApi(Component, "view", "sessionTokens", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "sessionTokens", parameters);
         }
 
         public IApiResult GetSessions(string site, string session = null)
         {
             var parameters = new Dictionary<string, string> { { "site", site } };
             if (session != null) parameters.Add("session", session);
-            return _zapClient.CallApi(Component, "view", "sessions", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "sessions", parameters);
         }
 
         public IApiResult AddSessionToken(string apikey, string site, string sessionToken)
@@ -62,7 +63,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("site", site);
             if (session != null) parameters.Add("session", session);
-            return _zapClient.CallApi(Component, "action", "createEmptySession", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "createEmptySession", parameters);
         }
 
         public IApiResult RemoveSession(string apikey, string site, string session)
@@ -81,7 +82,7 @@ namespace NZap.Components
             parameters.Add("site", site);
             parameters.Add("oldSessionName", oldSessionName);
             parameters.Add("newSessionName", newSessionName);
-            return _zapClient.CallApi(Component, "action", "renameSession", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "renameSession", parameters);
         }
 
         public IApiResult SetActiveSession(string apikey, string site, string session)
@@ -95,14 +96,14 @@ namespace NZap.Components
             parameters.Add("session", session);
             parameters.Add("sessionToken", sessionToken);
             parameters.Add("tokenValue", tokenValue);
-            return _zapClient.CallApi(Component, "action", "setSessionTokenValue", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "setSessionTokenValue", parameters);
         }
 
         public IApiResult UnsetActiveSession(string apikey, string site)
         {
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("site", site);
-            return _zapClient.CallApi(Component, "action", "unsetActiveSession", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, "unsetActiveSession", parameters);
         }
 
         private IApiResult SetSessionToken(string apikey, string site, string sessionToken, string action)
@@ -110,7 +111,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("site", site);
             parameters.Add("sessionToken", sessionToken);
-            return _zapClient.CallApi(Component, "action", action, parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, action, parameters);
         }
 
         private IApiResult SetSession(string apikey, string site, string session, string action)
@@ -118,7 +119,7 @@ namespace NZap.Components
             var parameters = ApikeyHelper.ReturnParameterDictFromApikey(apikey);
             parameters.Add("site", site);
             parameters.Add("session", session);
-            return _zapClient.CallApi(Component, "action", action, parameters);
+            return _zapClient.CallApi(Component, ActionTypes.Action, action, parameters);
         }
     }
 }

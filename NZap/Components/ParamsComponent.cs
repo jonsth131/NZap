@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NZap.Entities;
+using NZap.Enums;
 
 namespace NZap.Components
 {
@@ -24,7 +25,7 @@ namespace NZap.Components
         {
             var parameters = new Dictionary<string, string>();
             if (site != null) parameters.Add("site", site);
-            return _zapClient.CallApi(Component, "view", "params", parameters);
+            return _zapClient.CallApi(Component, ActionTypes.View, "params", parameters);
         }
     }
 }
